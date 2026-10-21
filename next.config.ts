@@ -9,11 +9,20 @@ const nextConfig: NextConfig = {
     qualities: [75, 85],
   },
   poweredByHeader: false,
-  // Alternate single-file designs, previewed alongside the main site.
+  // The homepage is the single-file "performance" design in public/performance.html.
+  // beforeFiles lets it take over "/" from the original React page.
   async rewrites() {
+    return {
+      beforeFiles: [{ source: "/", destination: "/performance.html" }],
+      afterFiles: [{ source: "/luxury", destination: "/luxury.html" }],
+      fallback: [],
+    };
+  },
+  // Old preview address now lives at "/" — send visitors and links there.
+  async redirects() {
     return [
-      { source: "/luxury", destination: "/luxury.html" },
-      { source: "/performance", destination: "/performance.html" },
+      { source: "/performance", destination: "/", permanent: true },
+      { source: "/performance.html", destination: "/", permanent: true },
     ];
   },
   async headers() {

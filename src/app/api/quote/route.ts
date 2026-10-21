@@ -109,7 +109,9 @@ export async function POST(request: Request) {
 
   const to = process.env.QUOTE_TO_EMAIL || business.email;
   const from = process.env.QUOTE_FROM_EMAIL || "Davila Detailing Website <onboarding@resend.dev>";
-  const service = serviceLabel(fields.service)!;
+  // Pages can send the exact service or package the customer picked (e.g. "Signature Package").
+  const requested = str(form, "requested").slice(0, 120);
+  const service = requested || serviceLabel(fields.service)!;
 
   const rows: [string, string][] = [
     ["Name", fields.name],
@@ -124,14 +126,14 @@ export async function POST(request: Request) {
   ];
 
   const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#111">
-<h2 style="margin:0 0 12px">New quote request — ${escapeHtml(service)}</h2>
+<h2 style="margin:0 0 12px">New estimate request — ${escapeHtml(service)}</h2>
 <table cellpadding="8" style="border-collapse:collapse">${rows
     .map(
       ([k, v]) =>
         `<tr><td style="border:1px solid #ddd;font-weight:bold;vertical-align:top">${k}</td><td style="border:1px solid #ddd;white-space:pre-wrap">${escapeHtml(v)}</td></tr>`,
     )
     .join("")}</table>
-<p style="color:#666;font-size:13px">Sent from the quote form on the Davila Detailing Co. website.</p></div>`;
+<p style="color:#666;font-size:13px">Sent from the estimate form on the Davila Detailing Co. website.</p></div>`;
 
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
@@ -150,7 +152,7 @@ export async function POST(request: Request) {
         from,
         to: [to],
         reply_to: fields.email || undefined,
-        subject: `Quote request: ${service} — ${fields.name}`,
+        subject: `Estimate request: ${service} — ${fields.name}`,
         html,
         text,
         attachments: attachments.length ? attachments : undefined,
