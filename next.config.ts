@@ -9,9 +9,12 @@ const nextConfig: NextConfig = {
     qualities: [75, 85],
   },
   poweredByHeader: false,
-  // Alternate single-file design, previewed alongside the main site at /luxury.
+  // Alternate single-file designs, previewed alongside the main site.
   async rewrites() {
-    return [{ source: "/luxury", destination: "/luxury.html" }];
+    return [
+      { source: "/luxury", destination: "/luxury.html" },
+      { source: "/performance", destination: "/performance.html" },
+    ];
   },
   async headers() {
     return [
