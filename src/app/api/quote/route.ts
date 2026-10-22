@@ -126,14 +126,14 @@ export async function POST(request: Request) {
   ];
 
   const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#111">
-<h2 style="margin:0 0 12px">New estimate request — ${escapeHtml(service)}</h2>
+<h2 style="margin:0 0 12px">New booking request — ${escapeHtml(service)}</h2>
 <table cellpadding="8" style="border-collapse:collapse">${rows
     .map(
       ([k, v]) =>
         `<tr><td style="border:1px solid #ddd;font-weight:bold;vertical-align:top">${k}</td><td style="border:1px solid #ddd;white-space:pre-wrap">${escapeHtml(v)}</td></tr>`,
     )
     .join("")}</table>
-<p style="color:#666;font-size:13px">Sent from the estimate form on the Davila Detailing Co. website.</p></div>`;
+<p style="color:#666;font-size:13px">Sent from the booking form on the Davila Detailing Co. website.</p></div>`;
 
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
@@ -152,7 +152,7 @@ export async function POST(request: Request) {
         from,
         to: [to],
         reply_to: fields.email || undefined,
-        subject: `Estimate request: ${service} — ${fields.name}`,
+        subject: `Booking request: ${service} — ${fields.name}`,
         html,
         text,
         attachments: attachments.length ? attachments : undefined,
