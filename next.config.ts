@@ -14,13 +14,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [{ source: "/", destination: "/performance.html" }],
-      afterFiles: [{ source: "/luxury", destination: "/luxury.html" }],
+      afterFiles: [],
       fallback: [],
     };
   },
-  // Old preview address now lives at "/" — send visitors and links there.
+  // Old preview addresses now live at "/" — send visitors and links there.
   async redirects() {
     return [
+      { source: "/luxury", destination: "/", permanent: true },
       { source: "/performance", destination: "/", permanent: true },
       { source: "/performance.html", destination: "/", permanent: true },
     ];
