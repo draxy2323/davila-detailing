@@ -302,9 +302,11 @@ body::after {
 
 /* Gallery / before-after */
 .ba-wrap { margin-top: 56px; display: grid; gap: 18px; }
-@media (min-width: 1000px) { .ba-wrap { grid-template-columns: 1.6fr 1fr; } }
-.ba { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 16 / 10; border: 1px solid var(--line); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: ew-resize; background: #111; }
+@media (min-width: 1000px) { .ba-wrap { grid-template-columns: 1fr 1fr; align-items: start; } }
+.ba { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 1 / 1; border: 1px solid var(--line); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: ew-resize; background: #111; }
 .ba .pane { position: absolute; inset: 0; }
+.ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+.ba-cap { position: absolute; left: 16px; bottom: 16px; padding: 7px 11px; border-radius: 8px; background: rgba(0,0,0,.65); color: #fff; font-size: .8rem; font-weight: 700; pointer-events: none; }
 .ba .before { clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
 .ba .tag { position: absolute; top: 16px; padding: 7px 11px; border-radius: 8px; font: 400 .64rem var(--f-wide); letter-spacing: .2em; text-transform: uppercase; pointer-events: none; }
 .ba .before .tag { left: 16px; background: rgba(0,0,0,.65); color: #e3e5e8; }
@@ -731,20 +733,20 @@ textarea.input { min-height: 120px; resize: vertical; }
   <div class="wrap">
     <p class="eyebrow" data-reveal>Before &amp; After</p>
     <h2 class="h2 split" id="gal-title" data-split>See the <span class="chrome">difference.</span></h2>
-    <p class="lead" data-reveal>Drag the slider to compare. <strong style="color:#fff">These are placeholders</strong> — real photos of our work are coming soon.</p>
+    <p class="lead" data-reveal>Drag the slider to compare — this one is a real Davila Detailing Co. job. More photos are coming soon.</p>
 
     <div class="ba-wrap">
-      <!-- To update: replace the two placeholder panes with real photos of the SAME car and angle, e.g.
-           <img src="before.jpg" alt="Hood before detailing, with swirl marks" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /> -->
+      <!-- Real job photos live in /gallery (square crops of the same angle, plate blurred). -->
       <div class="ba" id="ba" tabindex="0" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% before">
         <div class="pane after">
-          <div class="ph ph-after"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Placeholder photo</span></div>
+          <img class="ba-img" src="/gallery/sienna-after-1200.webp" srcset="/gallery/sienna-after-700.webp 700w, /gallery/sienna-after-1200.webp 1200w" sizes="(min-width: 1000px) 50vw, 100vw" width="1200" height="1200" alt="Gray Toyota Sienna after its detail — clean, glossy paint and clear glass" loading="lazy" decoding="async" draggable="false" />
           <span class="tag">After</span>
         </div>
         <div class="pane before">
-          <div class="ph ph-before"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Placeholder photo</span></div>
+          <img class="ba-img" src="/gallery/sienna-before-1200.webp" srcset="/gallery/sienna-before-700.webp 700w, /gallery/sienna-before-1200.webp 1200w" sizes="(min-width: 1000px) 50vw, 100vw" width="1200" height="1200" alt="Gray Toyota Sienna before its detail, with dusty paint" loading="lazy" decoding="async" draggable="false" />
           <span class="tag">Before</span>
         </div>
+        <span class="ba-cap">Toyota Sienna</span>
         <div class="handle" aria-hidden="true"><span class="knob"><svg class="icon"><use href="#i-move-horizontal"/></svg></span></div>
       </div>
 
