@@ -302,7 +302,11 @@ body::after {
 
 /* Gallery / before-after */
 .ba-wrap { margin-top: 56px; display: grid; gap: 18px; }
-@media (min-width: 1000px) { .ba-wrap { grid-template-columns: 1fr 1fr; align-items: start; } }
+@media (min-width: 1000px) {
+  .ba-wrap { grid-template-columns: 2fr 1fr; align-items: stretch; }
+  .ba-wrap .thumbs { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .ba-wrap .thumbs .thumb { aspect-ratio: auto; }
+}
 .ba { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 1 / 1; border: 1px solid var(--line); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: ew-resize; background: #111; }
 .ba .pane { position: absolute; inset: 0; }
 .ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
@@ -515,7 +519,6 @@ textarea.input { min-height: 120px; resize: vertical; }
       <a href="#packages">Packages</a>
       <a href="#pricing">Pricing</a>
       <a href="#gallery">Gallery</a>
-      <a href="#reviews">Reviews</a>
       <a href="#area">Service Area</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -533,7 +536,6 @@ textarea.input { min-height: 120px; resize: vertical; }
     <a class="l" href="#packages">Packages <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#pricing">Pricing <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#gallery">Gallery <svg class="icon"><use href="#i-arrow-right"/></svg></a>
-    <a class="l" href="#reviews">Reviews <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#area">Service Area <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#faq">FAQ <svg class="icon"><use href="#i-arrow-right"/></svg></a>
   </nav>
@@ -752,12 +754,10 @@ textarea.input { min-height: 120px; resize: vertical; }
         <div class="handle" aria-hidden="true"><span class="knob"><svg class="icon"><use href="#i-move-horizontal"/></svg></span></div>
       </div>
 
-      <!-- To update: swap each placeholder for <img src="..." alt="..." loading="lazy"> -->
+      <!-- Add more real photos here as <div class="thumb real">…</div> (square, 600px WebP in /gallery). -->
       <div class="thumbs">
         <div class="thumb real" data-reveal><img src="/gallery/sienna-exterior-600.webp" width="600" height="600" alt="Freshly washed gray Toyota Sienna in a driveway, side view" loading="lazy" decoding="async" /><span class="cap">Exterior</span></div>
-        <div class="thumb" data-reveal><div class="ph ph-before"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Photo placeholder</span></div><span class="cap">Interior</span></div>
         <div class="thumb real" data-reveal><img src="/gallery/gmc-wheel-600.webp" width="600" height="600" alt="Clean GMC alloy wheel with a dressed black tire" loading="lazy" decoding="async" /><span class="cap">Wheels</span></div>
-        <div class="thumb" data-reveal><div class="ph ph-after"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Photo placeholder</span></div><span class="cap">Engine bay</span></div>
       </div>
     </div>
   </div>
@@ -788,7 +788,7 @@ textarea.input { min-height: 120px; resize: vertical; }
 
 <!-- ═════════════ REVIEWS (placeholders) ═════════════ -->
 <!-- To update: replace each placeholder with a REAL review (with the customer's permission). Do not invent reviews. -->
-<section class="section process" id="reviews" aria-labelledby="rev-title">
+<section class="section process" id="reviews" aria-labelledby="rev-title" hidden><!-- Hidden until real reviews are added: replace the cards below, then remove the hidden attribute and restore the Reviews menu links. -->
   <div class="wrap">
     <p class="eyebrow" data-reveal>Reviews</p>
     <h2 class="h2 split" id="rev-title" data-split>What drivers <span class="chrome">are saying.</span></h2>
