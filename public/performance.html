@@ -325,7 +325,9 @@ body::after {
 .ph-label .icon { width: 22px; height: 22px; }
 .thumbs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .thumb { position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; border: 1px solid var(--line); }
-.thumb .cap { position: absolute; left: 10px; bottom: 10px; right: 10px; font-size: .76rem; font-weight: 700; color: #fff; text-shadow: 0 2px 8px #000; }
+.thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.thumb.real::after { content: ""; position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(transparent, rgba(0,0,0,.7)); pointer-events: none; }
+.thumb .cap { z-index: 1; position: absolute; left: 10px; bottom: 10px; right: 10px; font-size: .76rem; font-weight: 700; color: #fff; text-shadow: 0 2px 8px #000; }
 
 /* Why */
 .why-grid { display: grid; gap: 40px; }
@@ -752,9 +754,9 @@ textarea.input { min-height: 120px; resize: vertical; }
 
       <!-- To update: swap each placeholder for <img src="..." alt="..." loading="lazy"> -->
       <div class="thumbs">
-        <div class="thumb" data-reveal><div class="ph ph-after"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Photo placeholder</span></div><span class="cap">Exterior</span></div>
+        <div class="thumb real" data-reveal><img src="/gallery/sienna-exterior-600.webp" width="600" height="600" alt="Freshly washed gray Toyota Sienna in a driveway, side view" loading="lazy" decoding="async" /><span class="cap">Exterior</span></div>
         <div class="thumb" data-reveal><div class="ph ph-before"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Photo placeholder</span></div><span class="cap">Interior</span></div>
-        <div class="thumb" data-reveal><div class="ph ph-before"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Photo placeholder</span></div><span class="cap">Wheels</span></div>
+        <div class="thumb real" data-reveal><img src="/gallery/gmc-wheel-600.webp" width="600" height="600" alt="Clean GMC alloy wheel with a dressed black tire" loading="lazy" decoding="async" /><span class="cap">Wheels</span></div>
         <div class="thumb" data-reveal><div class="ph ph-after"><span class="ph-label"><svg class="icon"><use href="#i-camera"/></svg>Photo placeholder</span></div><span class="cap">Engine bay</span></div>
       </div>
     </div>
