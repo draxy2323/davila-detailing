@@ -182,11 +182,26 @@ body::after {
     radial-gradient(70% 55% at 72% 62%, rgba(225,6,0,.28), transparent 70%),
     radial-gradient(40% 30% at 20% 15%, rgba(217,221,226,.08), transparent 70%),
     linear-gradient(180deg, #0b0b0d, #0A0A0B); }
-.hero-grid { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+.hero-slides { position: absolute; inset: 0; z-index: -3; overflow: hidden; background: #0b0b0d; }
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); }
+.slide img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; transform: scale(1.08); transition: transform 7s linear; filter: brightness(.78) saturate(1.05); }
+.slide.is-on { opacity: 1; }
+.slide.is-on img { transform: scale(1); }
+.hs-ctrl { position: absolute; right: max(20px, calc((100% - 1240px) / 2)); bottom: 26px; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 6px 6px 6px 14px; border-radius: 999px; background: rgba(10,10,11,.55); border: 1px solid var(--line-2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.hs-cap { font-size: .8rem; font-weight: 700; color: #fff; white-space: nowrap; }
+.hs-dots { display: flex; }
+.hs-dot { width: 28px; height: 32px; border: 0; padding: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.hs-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); transition: background .3s, width .3s, border-radius .3s; }
+.hs-dot[aria-current="true"]::before { width: 18px; border-radius: 4px; background: var(--red-hi); }
+.hs-pause { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(255,255,255,.06); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.hs-pause .icon { width: 14px; height: 14px; }
+@media (max-width: 1079px) { .hero { padding-bottom: 160px; } .hs-ctrl { bottom: 92px; left: 20px; right: auto; } }
+@media (max-width: 420px) { .hs-cap { display: none; } .hs-ctrl { padding-left: 6px; } }
+.hero-grid { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .22;
   background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 72px 72px; -webkit-mask-image: radial-gradient(ellipse 60% 55% at 30% 35%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 55% at 30% 35%, #000 20%, transparent 75%); }
-.hero-scrim { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(10,10,11,.86) 0%, rgba(10,10,11,.55) 45%, rgba(10,10,11,0) 75%), linear-gradient(0deg, var(--ink) 0%, transparent 22%); }
-@media (max-width: 767px) { .hero-scrim { background: linear-gradient(180deg, rgba(10,10,11,.55), rgba(10,10,11,.75) 60%, var(--ink)); } }
+.hero-scrim { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, rgba(10,10,11,.9) 0%, rgba(10,10,11,.66) 42%, rgba(10,10,11,.18) 78%), linear-gradient(0deg, var(--ink) 0%, transparent 26%), linear-gradient(180deg, rgba(10,10,11,.55) 0%, transparent 22%); }
+@media (max-width: 767px) { .hero-scrim { background: linear-gradient(180deg, rgba(10,10,11,.7), rgba(10,10,11,.62) 45%, rgba(10,10,11,.82) 75%, var(--ink)); } }
 .hero-content { max-width: 860px; }
 .pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 10px; border-radius: 999px; border: 1px solid var(--line-2); background: rgba(255,255,255,.035); backdrop-filter: blur(8px); font-size: .82rem; font-weight: 600; color: #e7e9ec; }
 .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px rgba(225,6,0,.2), 0 0 14px rgba(225,6,0,.9); }
@@ -303,8 +318,8 @@ body::after {
 /* Gallery / before-after */
 .ba-wrap { margin-top: 56px; display: grid; gap: 18px; }
 @media (min-width: 1000px) {
-  .ba-wrap { grid-template-columns: 2fr 1fr; align-items: stretch; }
-  .ba-wrap .thumbs { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .ba-wrap { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .ba-wrap .thumbs { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
   .ba-wrap .thumbs .thumb { aspect-ratio: auto; }
 }
 .ba { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 1 / 1; border: 1px solid var(--line); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: ew-resize; background: #111; }
@@ -549,6 +564,13 @@ textarea.input { min-height: 120px; resize: vertical; }
 <!-- ═════════════ HERO ═════════════ -->
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero-fallback" aria-hidden="true"></div>
+  <!-- Real job photos. Add a slide by copying a <picture> (wide = desktop crop, tall = phone). -->
+  <div class="hero-slides" id="heroSlides" aria-hidden="true">
+    <picture class="slide is-on" data-cap="Foam pre-wash · Toyota Sienna"><source media="(min-width: 768px)" srcset="/gallery/hero-sienna-foam-wide.webp" /><img src="/gallery/hero-sienna-foam-tall.webp" alt="" fetchpriority="high" decoding="async" /></picture>
+    <picture class="slide" data-cap="Foam pre-wash · Ford Mustang"><source media="(min-width: 768px)" data-srcset="/gallery/hero-mustang-foam-wide.webp" /><img data-src="/gallery/hero-mustang-foam-tall.webp" alt="" decoding="async" /></picture>
+    <picture class="slide" data-cap="Finished exterior · Toyota Sienna"><source media="(min-width: 768px)" data-srcset="/gallery/hero-sienna-clean-wide.webp" /><img data-src="/gallery/hero-sienna-clean-tall.webp" alt="" decoding="async" /></picture>
+    <picture class="slide" data-cap="Interior detail · Honda Civic"><source media="(min-width: 768px)" data-srcset="/gallery/hero-civic-interior-wide.webp" /><img data-src="/gallery/hero-civic-interior-tall.webp" alt="" decoding="async" /></picture>
+  </div>
   <canvas id="scene" aria-hidden="true"></canvas>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-scrim" aria-hidden="true"></div>
@@ -571,6 +593,11 @@ textarea.input { min-height: 120px; resize: vertical; }
         <span><svg class="icon"><use href="#i-badge-check"/></svg>Upfront pricing, no surprises</span>
       </p>
     </div>
+  </div>
+  <div class="hs-ctrl" role="group" aria-label="Photo slideshow of our work">
+    <p class="hs-cap" id="hsCap">Foam pre-wash · Toyota Sienna</p>
+    <div class="hs-dots"><button type="button" class="hs-dot" aria-label="Show photo 1 of 4: Foam pre-wash · Toyota Sienna" aria-current="true"></button><button type="button" class="hs-dot" aria-label="Show photo 2 of 4: Foam pre-wash · Ford Mustang"></button><button type="button" class="hs-dot" aria-label="Show photo 3 of 4: Finished exterior · Toyota Sienna"></button><button type="button" class="hs-dot" aria-label="Show photo 4 of 4: Interior detail · Honda Civic"></button></div>
+    <button type="button" class="hs-pause" id="hsPause" aria-label="Pause slideshow" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/></svg></button>
   </div>
   <div class="scroll-cue" aria-hidden="true">SCROLL<i></i></div>
 </section>
@@ -757,6 +784,8 @@ textarea.input { min-height: 120px; resize: vertical; }
       <!-- Add more real photos here as <div class="thumb real">…</div> (square, 600px WebP in /gallery). -->
       <div class="thumbs">
         <div class="thumb real" data-reveal><img src="/gallery/sienna-exterior-600.webp" width="600" height="600" alt="Freshly washed gray Toyota Sienna in a driveway, side view" loading="lazy" decoding="async" /><span class="cap">Exterior</span></div>
+        <div class="thumb real" data-reveal><img src="/gallery/civic-interior-600.webp" width="600" height="600" alt="Clean Honda Civic front interior — seats, dash and carpets" loading="lazy" decoding="async" /><span class="cap">Interior</span></div>
+        <div class="thumb real" data-reveal><img src="/gallery/mustang-foam-600.webp" width="600" height="600" alt="Ford Mustang covered in foam during a pre-wash at dusk" loading="lazy" decoding="async" /><span class="cap">Foam pre-wash</span></div>
         <div class="thumb real" data-reveal><img src="/gallery/gmc-wheel-600.webp" width="600" height="600" alt="Clean GMC alloy wheel with a dressed black tire" loading="lazy" decoding="async" /><span class="cap">Wheels</span></div>
       </div>
     </div>
@@ -1414,41 +1443,6 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     const camera = new T.PerspectiveCamera(38, 1, 0.1, 100);
     camera.position.set(0, 0.4, 11);
 
-    // Curved "body panel" — like a hood seen at a low angle.
-    const pg = new T.PlaneGeometry(30, 12, small ? 80 : 160, small ? 30 : 60);
-    const pp = pg.attributes.position;
-    for (let i = 0; i < pp.count; i++) { const x = pp.getX(i), y = pp.getY(i); pp.setZ(i, -0.022 * x * x + 0.18 * Math.sin(y * 0.35) - 0.03 * y * y); }
-    pg.computeVertexNormals();
-    const panelMat = new T.ShaderMaterial({
-      transparent: true, depthWrite: false,
-      uniforms: { uTime: { value: 0 }, uMouse: { value: new T.Vector2(0.5, 0.5) } },
-      vertexShader: `varying vec3 vN; varying vec3 vW; varying vec2 vUv;
-        void main(){ vUv=uv; vec4 w=modelMatrix*vec4(position,1.); vW=w.xyz; vN=normalize(mat3(modelMatrix)*normal); gl_Position=projectionMatrix*viewMatrix*w; }`,
-      fragmentShader: `uniform float uTime; uniform vec2 uMouse; varying vec3 vN; varying vec3 vW; varying vec2 vUv;
-        void main(){
-          vec3 V=normalize(cameraPosition-vW); vec3 N=normalize(vN);
-          float fres=pow(1.-max(dot(N,V),0.),3.);
-          float sweep=mod(uTime*.075,1.7)-.35;
-          float c=vUv.x+(vUv.y-.5)*.45;
-          float band=exp(-pow((c-sweep)*9.,2.));
-          float core=exp(-pow((c-sweep)*48.,2.));
-          vec3 col=vec3(.012,.012,.016);
-          col+=vec3(.88,.02,0.)*band*.95;
-          col+=vec3(1.,.82,.78)*core*.55;
-          // soft studio softbox reflections
-          col+=vec3(.8,.82,.86)*smoothstep(.04,0.,abs(vUv.y-.72))*.05;
-          col+=vec3(.8,.82,.86)*smoothstep(.02,0.,abs(vUv.y-.6))*.03;
-          float m=exp(-length((vUv-uMouse)*vec2(2.6,1.))*5.5);
-          col+=vec3(.86,.88,.92)*m*.12+vec3(.9,.05,.02)*m*.08;
-          col+=fres*vec3(.22,.23,.26);
-          float a=smoothstep(0.,.18,vUv.y)*smoothstep(1.,.7,vUv.y)*smoothstep(0.,.1,vUv.x)*smoothstep(1.,.9,vUv.x);
-          gl_FragColor=vec4(col,a);
-        }`,
-    });
-    const panel = new T.Mesh(pg, panelMat);
-    panel.rotation.x = -1.18; panel.position.set(1.2, -2.7, -1.5);
-    scene.add(panel);
-
     // Soap bubbles: thin-film iridescence + fresnel + specular (instanced).
     const COUNT = small ? 26 : 64;
     const bg = new T.SphereGeometry(1, small ? 20 : 32, small ? 14 : 22);
@@ -1503,8 +1497,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     function frame(now) {
       const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt;
       mouse.x += (mouse.tx - mouse.x) * 0.05; mouse.y += (mouse.ty - mouse.y) * 0.05;
-      panelMat.uniforms.uTime.value = t; bubbleMat.uniforms.uTime.value = t;
-      panelMat.uniforms.uMouse.value.lerp(new T.Vector2(mouse.uvx, mouse.uvy * 0.7), 0.06);
+      bubbleMat.uniforms.uTime.value = t;
       for (let i = 0; i < COUNT; i++) {
         const b = B[i];
         const dx = b.x - mouse.world.x, dy = b.y - mouse.world.y, d2 = dx * dx + dy * dy, rad = 2.2 + b.r;
@@ -1533,6 +1526,38 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     document.addEventListener("visibilitychange", () => (document.hidden || !visible ? stop() : start()));
   }
 
+  /* ── Hero photo slideshow (pausable; static under reduced motion) ── */
+  function initSlides() {
+    const slides = $$("#heroSlides .slide"), dots = $$(".hs-dot"), cap = $("#hsCap"), btn = $("#hsPause");
+    if (slides.length < 2) return;
+    let i = 0, timer = 0, paused = reduce, visible = true;
+    const load = (s) => {
+      s.querySelectorAll("source[data-srcset]").forEach((e) => { e.srcset = e.dataset.srcset; e.removeAttribute("data-srcset"); });
+      const img = s.querySelector("img[data-src]"); if (img) { img.src = img.dataset.src; img.removeAttribute("data-src"); }
+    };
+    const show = (n) => {
+      i = (n + slides.length) % slides.length;
+      load(slides[i]); load(slides[(i + 1) % slides.length]);
+      slides.forEach((s, k) => s.classList.toggle("is-on", k === i));
+      dots.forEach((d, k) => d.setAttribute("aria-current", k === i ? "true" : "false"));
+      cap.textContent = slides[i].dataset.cap;
+    };
+    const stop = () => { clearInterval(timer); timer = 0; };
+    const start = () => { stop(); if (!paused && visible && !document.hidden) timer = setInterval(() => show(i + 1), 5500); };
+    const setPaused = (p) => {
+      paused = p; btn.setAttribute("aria-pressed", String(p)); btn.setAttribute("aria-label", p ? "Play slideshow" : "Pause slideshow");
+      btn.innerHTML = p ? '<svg class="icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg>' : '<svg class="icon" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/></svg>';
+      start();
+    };
+    dots.forEach((d, k) => d.addEventListener("click", () => { show(k); start(); }));
+    btn.addEventListener("click", () => setPaused(!paused));
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; start(); }).observe($("#top"));
+    document.addEventListener("visibilitychange", start);
+    load(slides[1]);
+    setPaused(paused);
+  }
+
+  safe(initSlides);
   addEventListener("load", () => { safe(initMotion); safe(initScene); });
 })();
 </script>
