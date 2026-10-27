@@ -209,11 +209,12 @@ body::after {
 .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .hero .ctas .btn { min-height: 58px; padding-inline: 28px; font-size: 1.02rem; }
 .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-@media (max-width: 599px) { .hero-tags .pill, .promo .sm-hide { display: none; } .promo { font-size: .82rem; gap: 8px; } .promo .tag { letter-spacing: .1em; } }
 .promo { display: inline-flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px; white-space: nowrap; border-radius: 999px; border: 1px solid rgba(255,59,48,.45); background: linear-gradient(90deg, rgba(225,6,0,.22), rgba(225,6,0,.05)); color: #fff; font-weight: 700; font-size: .86rem; transition: border-color .3s, background .3s; }
 .promo:hover { border-color: var(--red-hi); background: linear-gradient(90deg, rgba(225,6,0,.32), rgba(225,6,0,.08)); }
 .promo .tag { padding: 6px 10px; border-radius: 999px; background: var(--red); font: 400 .62rem/1 var(--f-wide); letter-spacing: .14em; text-transform: uppercase; }
 .promo .icon { width: 16px; height: 16px; color: var(--red-hi); }
+.promo .sm-show { display: none; }
+@media (max-width: 599px) { .hero-tags .pill, .promo .sm-hide { display: none; } .promo .sm-show { display: inline; } .promo { font-size: .82rem; gap: 8px; } .promo .tag { letter-spacing: .06em; padding: 6px 8px; } }
 .promo-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; padding: 16px 18px; border-radius: 16px; border: 1px solid rgba(255,59,48,.4); background: rgba(225,6,0,.1); color: #e7e9ec; font-size: .95rem; }
 .promo-note b { color: #fff; }
 .promo-note .icon { color: var(--red-hi); width: 20px; height: 20px; margin-top: 2px; }
@@ -632,7 +633,7 @@ textarea.input { min-height: 120px; resize: vertical; }
     <div class="hero-content" data-parallax="-60">
       <div class="hero-tags" data-hero>
         <p class="pill"><span class="dot" aria-hidden="true"></span>Mobile detailing · Based in Ewing, NJ</p>
-        <a class="promo" href="#quote" data-quote><span class="tag">New customers</span><span>$25 off<span class="sm-hide"> your</span> first detail</span><svg class="icon"><use href="#i-arrow-right"/></svg></a>
+        <a class="promo" href="#quote" data-quote><span class="tag">First-time customers</span><span class="sm-hide">$15 off any service · $25 off any package</span><span class="sm-show">Up to $25 off</span><svg class="icon"><use href="#i-arrow-right"/></svg></a>
       </div>
       <h1 id="hero-title">
         <span class="split" data-hero-split>Showroom shine.</span>
@@ -946,7 +947,7 @@ textarea.input { min-height: 120px; resize: vertical; }
       <p class="eyebrow" data-reveal>Book now</p>
       <h2 class="h2 split" id="quote-title" data-split>Book your <span class="chrome">detail.</span></h2>
       <p class="lead" data-reveal>Three quick steps. We'll confirm your price and time before we arrive — no surprises.</p>
-      <p class="promo-note" data-reveal><svg class="icon"><use href="#i-badge-check"/></svg><span><b>New customers get $25 off their first detail.</b> Just check the box on the last step and we'll take it off your price.</span></p>
+      <p class="promo-note" data-reveal><svg class="icon"><use href="#i-badge-check"/></svg><span><b>First-Time Customer Promotion:</b> $15 off any single service or $25 off any package. Just check the box on the last step and we'll take it off your price.</span></p>
       <div class="contact-list" data-reveal>
         <a href="tel:+16096133772"><span class="ic"><svg class="icon"><use href="#i-phone"/></svg></span><span><small>Call or text</small><strong>(609) 613-3772</strong></span></a>
         <a href="mailto:daviladetailing@yahoo.com"><span class="ic alt"><svg class="icon"><use href="#i-mail"/></svg></span><span><small>Email</small><strong>daviladetailing@yahoo.com</strong></span></a>
@@ -1032,7 +1033,7 @@ textarea.input { min-height: 120px; resize: vertical; }
               <div class="field"><label for="phone">Phone <span class="req">*</span></label><input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="(609) 555-0123" /><p class="err" id="phone-err"></p></div>
               <div class="field"><label for="email">Email <span class="opt">Optional</span></label><input class="input" id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" /><p class="err" id="email-err"></p></div>
             </div>
-            <label class="check" for="firstTime"><input type="checkbox" id="firstTime" name="firstTime" /><span>This is my first detail with Davila Detailing Co.<small>New customers get $25 off.</small></span></label>
+            <label class="check" for="firstTime"><input type="checkbox" id="firstTime" name="firstTime" /><span>This is my first detail with Davila Detailing Co.<small>First-time customers get $15 off any single service or $25 off any package.</small></span></label>
           </div>
         </fieldset>
 
@@ -1065,7 +1066,7 @@ textarea.input { min-height: 120px; resize: vertical; }
   <div class="wrap">
     <div class="final" data-reveal>
       <h2 class="split" id="final-title" data-split>Your car. <span class="chrome">Your driveway.</span><br /><span class="redtxt">Our shine.</span></h2>
-      <p>Book a mobile detail anywhere in Mercer County. Upfront pricing, no surprises. New customers get $25 off their first detail.</p>
+      <p>Book a mobile detail anywhere in Mercer County. Upfront pricing, no surprises. First-time customers get $15 off any single service or $25 off any package.</p>
       <div class="ctas">
         <a class="btn btn-primary magnetic" href="#quote" data-quote>Book Now <svg class="icon"><use href="#i-arrow-right"/></svg></a>
         <a class="btn btn-ghost magnetic" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call (609) 613-3772</a>
@@ -1352,7 +1353,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     form.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.tagName === "INPUT" && step < 3) { e.preventDefault(); nextBtn.click(); } });
 
     function data() {
-      return { vehicle: vehicle(), service: v("service"), town: v("town"), date: v("date"), notes: v("notes"), name: v("name"), phone: v("phone"), email: v("email"), firstTime: $("#firstTime").checked ? "Yes — $25 off first detail" : "No" };
+      return { vehicle: vehicle(), service: v("service"), town: v("town"), date: v("date"), notes: v("notes"), name: v("name"), phone: v("phone"), email: v("email"), firstTime: $("#firstTime").checked ? "Yes — First-Time Customer Promotion ($15 off a single service / $25 off a package)" : "No" };
     }
     function mailto(d) {
       const body = [`Name: ${d.name}`, `Phone: ${d.phone}`, d.email && `Email: ${d.email}`, `Vehicle: ${d.vehicle}`, `Service: ${d.service}`, `Town: ${d.town}`, d.date && `Preferred date: ${d.date}`, d.notes && `Notes: ${d.notes}`, `First-time customer: ${d.firstTime}`].filter(Boolean).join("\n");
