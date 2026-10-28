@@ -270,6 +270,8 @@ body::after {
 .extras .icon { width: 20px; height: 20px; color: var(--red-hi); margin-top: 3px; }
 .extras b { display: block; color: #fff; font-weight: 700; }
 .incl { display: grid; gap: 10px; margin-top: 14px; }
+.svc .svc-desc { margin-top: 12px; font-size: .95rem; color: var(--steel); }
+.ptable .tag-sm { display: block; margin-top: 4px; font: 400 .56rem/1.2 var(--f-wide); font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--red-hi); }
 .incl li { display: flex; gap: 10px; font-size: .95rem; color: #d6d8dc; line-height: 1.45; }
 .incl .icon { width: 17px; height: 17px; color: var(--red-hi); margin-top: 3px; }
 
@@ -684,6 +686,7 @@ textarea.input { min-height: 120px; resize: vertical; }
         <span class="ic"><svg class="icon"><use href="#i-droplets"/></svg></span>
         <h3>Exterior Detail</h3>
         <p class="svc-price">Starting at <b>$100</b></p>
+        <p class="svc-desc">A full outside wash that leaves paint, wheels and glass looking sharp.</p>
         <ul class="incl">
           <li><svg class="icon"><use href="#i-check"/></svg>Complete outside wash &amp; wax</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Wheels &amp; tires cleaned</li>
@@ -697,6 +700,7 @@ textarea.input { min-height: 120px; resize: vertical; }
         <span class="ic"><svg class="icon"><use href="#i-armchair"/></svg></span>
         <h3>Basic Interior Detail</h3>
         <p class="svc-price">Starting at <b>$110</b></p>
+        <p class="svc-desc">A clean, fresh cabin. Vacuum and wipe-down of every surface.</p>
         <ul class="incl">
           <li><svg class="icon"><use href="#i-check"/></svg>Windows &amp; door jambs cleaned</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Vacuum interior &amp; trunk</li>
@@ -710,6 +714,7 @@ textarea.input { min-height: 120px; resize: vertical; }
         <span class="ic"><svg class="icon"><use href="#i-sparkles"/></svg></span>
         <h3>Premium Interior Detail</h3>
         <p class="svc-price">Starting at <b>$180</b></p>
+        <p class="svc-desc">Our deepest interior clean. Shampoo, steam and leather care that lifts stains and grime.</p>
         <ul class="incl">
           <li><svg class="icon"><use href="#i-check"/></svg>Deep interior vacuum</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Steam cleaning of seats, carpets, vents &amp; cupholders</li>
@@ -752,7 +757,7 @@ textarea.input { min-height: 120px; resize: vertical; }
       <article class="card pkg" data-reveal>
         <p class="tier">Package 01</p>
         <h3>Express Detail</h3>
-        <p class="desc">A quick, thorough clean — inside and out.</p>
+        <p class="desc">A quick, thorough clean, inside and out. Great for regular upkeep.</p>
         <p class="amt"><small>Starting at</small><strong>$150</strong></p>
         <ul>
           <li><svg class="icon"><use href="#i-check"/></svg>Complete outside wash &amp; wax</li>
@@ -796,7 +801,7 @@ textarea.input { min-height: 120px; resize: vertical; }
         <tbody>
           <tr><th scope="row">Exterior</th><td>$100</td><td>$120</td><td>$140</td></tr>
           <tr><th scope="row">Basic Interior</th><td>$110</td><td>$130</td><td>$150</td></tr>
-          <tr><th scope="row">Premium Interior</th><td>$180</td><td>$210</td><td>$240</td></tr>
+          <tr><th scope="row">Premium Interior<span class="tag-sm">Deep clean</span></th><td>$180</td><td>$210</td><td>$240</td></tr>
           <tr><th scope="row">Express</th><td>$150</td><td>$170</td><td>$190</td></tr>
           <tr><th scope="row">Premium</th><td>$240</td><td>$270</td><td>$300</td></tr>
         </tbody>
