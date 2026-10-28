@@ -42,7 +42,7 @@
   ],
   "sameAs": ["https://www.instagram.com/daviladetailingco/"],
   "makesOffer": [
-    "Express Detail Package", "Premium Detail Package", "Exterior Detail", "Interior Detail",
+    "Express Detail Package", "Premium Detail Package", "Exterior Detail", "Basic Interior Detail", "Premium Interior Detail",
     "Headlight Restoration", "Engine Bay Cleaning", "Pet Hair Removal"
   ]
 }
@@ -263,6 +263,8 @@ body::after {
 .svc-cta { padding: 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 300px; overflow: hidden;
   background: radial-gradient(120% 90% at 100% 0%, rgba(225,6,0,.35), transparent 60%), var(--panel); }
 .svc-cta h3 { font-size: 1.7rem; }
+@media (min-width: 680px) { .svc-cta { grid-column: 1 / -1; min-height: 0; } }
+@media (min-width: 900px) { .svc-cta { flex-direction: row; align-items: center; gap: 32px; } .svc-cta p { flex: 1; } .svc-cta h3 { flex: 0 0 auto; } }
 .extras { display: grid; gap: 14px; margin-top: 18px; }
 .extras li { display: flex; gap: 12px; font-size: .95rem; }
 .extras .icon { width: 20px; height: 20px; color: var(--red-hi); margin-top: 3px; }
@@ -693,7 +695,7 @@ textarea.input { min-height: 120px; resize: vertical; }
       <article class="card svc tilt" data-reveal>
         <span class="glare" aria-hidden="true"></span>
         <span class="ic"><svg class="icon"><use href="#i-armchair"/></svg></span>
-        <h3>Interior Detail</h3>
+        <h3>Basic Interior Detail</h3>
         <p class="svc-price">Starting at <b>$110</b></p>
         <ul class="incl">
           <li><svg class="icon"><use href="#i-check"/></svg>Windows &amp; door jambs cleaned</li>
@@ -701,7 +703,23 @@ textarea.input { min-height: 120px; resize: vertical; }
           <li><svg class="icon"><use href="#i-check"/></svg>All door panels, dash &amp; console cleaned</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Cup holders cleaned</li>
         </ul>
-        <div class="foot"><a class="btn btn-ghost btn-sm" href="#quote" data-quote data-service="Interior Detail">Book This Service</a></div>
+        <div class="foot"><a class="btn btn-ghost btn-sm" href="#quote" data-quote data-service="Basic Interior Detail">Book This Service</a></div>
+      </article>
+      <article class="card svc tilt" data-reveal>
+        <span class="glare" aria-hidden="true"></span>
+        <span class="ic"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+        <h3>Premium Interior Detail</h3>
+        <p class="svc-price">Starting at <b>$180</b></p>
+        <ul class="incl">
+          <li><svg class="icon"><use href="#i-check"/></svg>Deep interior vacuum</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Steam cleaning of seats, carpets, vents &amp; cupholders</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Shampoo all mats, carpets &amp; seats</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Leather cleaner &amp; conditioner (if applicable)</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>All door panels, dash &amp; console cleaned</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Windows &amp; door jambs cleaned</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Cup holders cleaned</li>
+        </ul>
+        <div class="foot"><a class="btn btn-ghost btn-sm" href="#quote" data-quote data-service="Premium Interior Detail">Book This Service</a></div>
       </article>
       <article class="card svc svc-extra tilt" data-reveal>
         <span class="glare" aria-hidden="true"></span>
@@ -761,6 +779,7 @@ textarea.input { min-height: 120px; resize: vertical; }
           <li><svg class="icon"><use href="#i-check"/></svg>Deep interior vacuum</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Clean all door panels, dash &amp; console</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Cup holders cleaned</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Steam cleaning of seats, carpets, vents &amp; cupholders</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Shampoo all mats, carpets &amp; seats</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Leather cleaner &amp; conditioner (if applicable)</li>
         </ul>
@@ -776,7 +795,8 @@ textarea.input { min-height: 120px; resize: vertical; }
         <thead><tr><th scope="col">Service</th><th scope="col">Sedan</th><th scope="col">SUV / Truck</th><th scope="col">Van</th></tr></thead>
         <tbody>
           <tr><th scope="row">Exterior</th><td>$100</td><td>$120</td><td>$140</td></tr>
-          <tr><th scope="row">Interior</th><td>$110</td><td>$130</td><td>$150</td></tr>
+          <tr><th scope="row">Basic Interior</th><td>$110</td><td>$130</td><td>$150</td></tr>
+          <tr><th scope="row">Premium Interior</th><td>$180</td><td>$210</td><td>$240</td></tr>
           <tr><th scope="row">Express</th><td>$150</td><td>$170</td><td>$190</td></tr>
           <tr><th scope="row">Premium</th><td>$240</td><td>$270</td><td>$300</td></tr>
         </tbody>
@@ -995,7 +1015,7 @@ textarea.input { min-height: 120px; resize: vertical; }
                     <option>Express Detail Package</option><option>Premium Detail Package</option>
                   </optgroup>
                   <optgroup label="Services">
-                    <option>Exterior Detail</option><option>Interior Detail</option>
+                    <option>Exterior Detail</option><option>Basic Interior Detail</option><option>Premium Interior Detail</option>
                   </optgroup>
                   <optgroup label="Additional services">
                     <option>Headlight Restoration</option><option>Engine Bay Cleaning</option><option>Pet Hair Removal</option><option>Additional Services</option>
@@ -1371,7 +1391,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     }
     async function viaSite(d) {
       if (!SITE_ENDPOINT || !/^https?:/.test(location.protocol)) return false;
-      const svc = { "Exterior Detail": "exterior", "Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
+      const svc = { "Exterior Detail": "exterior", "Basic Interior Detail": "interior", "Premium Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
       const fd = new FormData();
       fd.append("name", d.name); fd.append("phone", d.phone); fd.append("email", d.email);
       fd.append("vehicle", d.vehicle); fd.append("service", svc); fd.append("requested", d.service); fd.append("location", d.town);
