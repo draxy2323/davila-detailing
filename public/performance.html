@@ -358,6 +358,20 @@ body::after {
 .ph-label { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 12px; background: rgba(0,0,0,.55); border: 1px dashed rgba(255,255,255,.3); color: #e9ebee; font-size: .82rem; font-weight: 600; }
 .ph-label .icon { width: 22px; height: 22px; }
 .thumbs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.clips { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 18px; border-radius: var(--radius); border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--panel); }
+.clips-text { grid-column: 1 / -1; padding: 6px 4px 8px; }
+.clips-text h3 { margin-top: 12px; font-size: 1.6rem; }
+.clips-text p:not(.eyebrow) { margin-top: 8px; font-size: .97rem; }
+.clips-text .btn { margin-top: 16px; }
+.clip { position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 9 / 16; background: #0b0b0d; border: 1px solid var(--line); }
+.clip video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.clip .tag { position: absolute; left: 10px; top: 10px; z-index: 1; padding: 6px 10px; border-radius: 999px; background: rgba(10,10,11,.7); border: 1px solid var(--line-2); font: 400 .6rem/1 var(--f-wide); letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+.clip .tag.after { background: var(--red); border-color: var(--red); }
+@media (min-width: 900px) {
+  .clips { grid-template-columns: 1.1fr 1fr 1fr; gap: 18px; padding: 22px; align-items: center; }
+  .clips-text { grid-column: auto; padding: 0 18px 0 10px; }
+  .clip { max-height: 560px; justify-self: center; width: 100%; max-width: 315px; }
+}
 .thumb { position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1; border: 1px solid var(--line); }
 .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .thumb.real::after { content: ""; position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(transparent, rgba(0,0,0,.7)); pointer-events: none; }
@@ -847,7 +861,7 @@ textarea.input { min-height: 120px; resize: vertical; }
   <div class="wrap">
     <p class="eyebrow" data-reveal>Before &amp; After</p>
     <h2 class="h2 split" id="gal-title" data-split>See the <span class="chrome">difference.</span></h2>
-    <p class="lead" data-reveal>Drag the slider to compare — this one is a real Davila Detailing Co. job. More photos are coming soon.</p>
+    <p class="lead" data-reveal>Drag the slider to compare. Every photo and video here is a real Davila Detailing Co. job.</p>
 
     <div class="ba-wrap">
       <!-- Real job photos live in /gallery (square crops of the same angle, plate blurred). -->
@@ -871,6 +885,24 @@ textarea.input { min-height: 120px; resize: vertical; }
         <div class="thumb real" data-reveal><img src="/gallery/mustang-foam-600.webp" width="600" height="600" alt="Ford Mustang covered in foam during a pre-wash at dusk" loading="lazy" decoding="async" /><span class="cap">Foam pre-wash</span></div>
         <div class="thumb real" data-reveal><img src="/gallery/gmc-wheel-600.webp" width="600" height="600" alt="Clean GMC alloy wheel with a dressed black tire" loading="lazy" decoding="async" /><span class="cap">Wheels</span></div>
       </div>
+    </div>
+
+    <!-- Short silent job clips (540x960 H.264). Copy a <figure> to add another pair. -->
+    <div class="clips" data-reveal>
+      <div class="clips-text">
+        <p class="eyebrow">On video</p>
+        <h3>Dodge Charger interior</h3>
+        <p>Dusty mats and carpets, cleaned out in the owner's driveway.</p>
+        <a class="btn btn-ghost btn-sm" href="#quote" data-quote>Book Your Detail</a>
+      </div>
+      <figure class="clip">
+        <video muted loop playsinline preload="none" poster="/gallery/charger-interior-before.webp" aria-label="Dodge Charger driver footwell before the interior detail, with dusty mats"><source src="/gallery/charger-interior-before.mp4" type="video/mp4" /><source src="/gallery/charger-interior-before.webm" type="video/webm" /></video>
+        <span class="tag">Before</span>
+      </figure>
+      <figure class="clip">
+        <video muted loop playsinline preload="none" poster="/gallery/charger-interior-after.webp" aria-label="Dodge Charger front interior after the detail, with clean mats, carpet and seats"><source src="/gallery/charger-interior-after.mp4" type="video/mp4" /><source src="/gallery/charger-interior-after.webm" type="video/webm" /></video>
+        <span class="tag after">After</span>
+      </figure>
     </div>
   </div>
 </section>
@@ -1550,6 +1582,18 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     load(slides[1]);
     setPaused(paused);
   }
+
+  /* ── Job clips: play only while on screen; static posters under reduced motion ── */
+  safe(() => {
+    const vids = $$(".clip video");
+    if (!vids.length) return;
+    if (reduce) { vids.forEach((v) => { v.controls = true; }); return; }
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      const v = e.target;
+      if (e.isIntersecting) { v.preload = "auto"; v.play().catch(() => {}); } else v.pause();
+    }), { threshold: 0.35 });
+    vids.forEach((v) => io.observe(v));
+  });
 
   safe(initSlides);
   addEventListener("load", () => { safe(initMotion); });
