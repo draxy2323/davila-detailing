@@ -392,15 +392,15 @@ body::after {
 .stat b { display: block; font: italic 900 clamp(2rem, 5vw, 3rem)/1 var(--f-display); color: #fff; }
 .stat > span { display: block; margin-top: 8px; font-size: .82rem; color: var(--steel); line-height: 1.35; }
 
-/* Reviews (placeholders) */
+/* Reviews */
 .rev-grid { display: grid; gap: 16px; margin-top: 56px; }
-@media (min-width: 900px) { .rev-grid { grid-template-columns: repeat(3, 1fr); } }
-.rev { padding: 28px; border-style: dashed; border-color: rgba(255,255,255,.2); }
-.rev .q { font: italic 900 3rem/0.6 var(--f-display); color: var(--red); }
-.rev blockquote { margin: 18px 0 0; color: #d9dbdf; font-size: 1.02rem; }
-.rev figcaption { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); font-weight: 700; color: #fff; }
+@media (min-width: 760px) { .rev-grid { grid-template-columns: repeat(2, 1fr); max-width: 980px; } }
+.rev { padding: 30px; display: flex; flex-direction: column; }
+.rev .stars { display: flex; gap: 4px; }
+.rev .stars svg { width: 20px; height: 20px; fill: #FFB400; }
+.rev blockquote { margin: 18px 0 0; color: #e7e9ec; font-size: 1.08rem; line-height: 1.6; }
+.rev figcaption { margin-top: auto; padding-top: 22px; font-weight: 700; color: #fff; }
 .rev figcaption span { display: block; font-weight: 500; color: var(--muted); font-size: .88rem; }
-.rev .flag { position: absolute; top: 14px; right: 14px; font: 400 .62rem var(--f-wide); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-2); padding: 5px 8px; border-radius: 6px; }
 
 /* Service area */
 .area-grid { display: grid; gap: 40px; }
@@ -608,6 +608,7 @@ textarea.input { min-height: 120px; resize: vertical; }
       <a href="#packages">Packages</a>
       <a href="#pricing">Pricing</a>
       <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
       <a href="#area">Service Area</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -625,6 +626,7 @@ textarea.input { min-height: 120px; resize: vertical; }
     <a class="l" href="#packages">Packages <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#pricing">Pricing <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#gallery">Gallery <svg class="icon"><use href="#i-arrow-right"/></svg></a>
+    <a class="l" href="#reviews">Reviews <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#area">Service Area <svg class="icon"><use href="#i-arrow-right"/></svg></a>
     <a class="l" href="#faq">FAQ <svg class="icon"><use href="#i-arrow-right"/></svg></a>
   </nav>
@@ -933,14 +935,15 @@ textarea.input { min-height: 120px; resize: vertical; }
 
 <!-- ═════════════ REVIEWS (placeholders) ═════════════ -->
 <!-- To update: replace each placeholder with a REAL review (with the customer's permission). Do not invent reviews. -->
-<section class="section process" id="reviews" aria-labelledby="rev-title" hidden><!-- Hidden until real reviews are added: replace the cards below, then remove the hidden attribute and restore the Reviews menu links. -->
+<section class="section process" id="reviews" aria-labelledby="rev-title">
+  <!-- Real Google reviews, quoted word for word. Add a new <figure> for each new review. -->
   <div class="wrap">
     <p class="eyebrow" data-reveal>Reviews</p>
     <h2 class="h2 split" id="rev-title" data-split>What drivers <span class="chrome">are saying.</span></h2>
+    <p class="lead" data-reveal>Real reviews from real customers on Google.</p>
     <div class="rev-grid">
-      <figure class="card rev" data-reveal><span class="flag">Placeholder</span><span class="q" aria-hidden="true">“</span><blockquote>[Customer review goes here]</blockquote><figcaption>[Customer first name]<span>[Town] · [Vehicle]</span></figcaption></figure>
-      <figure class="card rev" data-reveal><span class="flag">Placeholder</span><span class="q" aria-hidden="true">“</span><blockquote>[Customer review goes here]</blockquote><figcaption>[Customer first name]<span>[Town] · [Vehicle]</span></figcaption></figure>
-      <figure class="card rev" data-reveal><span class="flag">Placeholder</span><span class="q" aria-hidden="true">“</span><blockquote>[Customer review goes here]</blockquote><figcaption>[Customer first name]<span>[Town] · [Vehicle]</span></figcaption></figure>
+      <figure class="card rev" data-reveal><span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><blockquote>Amazing job professional and exceptional work attention to detail, will call again for all the rest of the family cars</blockquote><figcaption>Karen M.<span>Google review · Premium Detail</span></figcaption></figure>
+      <figure class="card rev" data-reveal><span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><blockquote>Got my car detailed last week, and it looks amazing!</blockquote><figcaption>Emma T.<span>Google review</span></figcaption></figure>
     </div>
   </div>
 </section>
