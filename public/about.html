@@ -996,7 +996,7 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
   <div class="wrap">
     <div class="final" data-reveal>
       <h2 class="split" id="final-title" data-split>Your car. <span class="chrome">Your driveway.</span><br /><span class="redtxt">Our shine.</span></h2>
-      <p>Book a mobile detail anywhere in Mercer County. Upfront pricing, no surprises. First-time customers get $15 off any single service or $25 off a Full Detail on their first detail.</p>
+      <p>Book a mobile detail anywhere in Mercer County. Upfront pricing, no surprises. First-time customers get $15 off any single service or $25 off any package on their first detail.</p>
       <div class="ctas">
         <a class="btn btn-primary magnetic" href="/book" data-quote>Book Now <svg class="icon"><use href="#i-arrow-right"/></svg></a>
         <a class="btn btn-ghost magnetic" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call (609) 613-3772</a>
@@ -1291,7 +1291,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
 
     function data() {
       const addons = $$('input[name="addons"]:checked', form).map((c) => c.value).join(", ");
-      return { vehicle: vehicle(), service: v("service"), addons, town: v("town"), date: v("date"), notes: v("notes"), name: v("name"), phone: v("phone"), email: v("email"), firstTime: $("#firstTime").checked ? "Yes — First-Time Customer Promotion ($15 off a single service / $25 off a Full Detail)" : "No" };
+      return { vehicle: vehicle(), service: v("service"), addons, town: v("town"), date: v("date"), notes: v("notes"), name: v("name"), phone: v("phone"), email: v("email"), firstTime: $("#firstTime").checked ? "Yes — First-Time Customer Promotion ($15 off a single service / $25 off a package)" : "No" };
     }
     function mailto(d) {
       const body = [`Name: ${d.name}`, `Phone: ${d.phone}`, d.email && `Email: ${d.email}`, `Vehicle: ${d.vehicle}`, `Service: ${d.service}`, d.addons && `Add-ons: ${d.addons}`, `Town: ${d.town}`, d.date && `Preferred date: ${d.date}`, d.notes && `Notes: ${d.notes}`, `First-time customer: ${d.firstTime}`].filter(Boolean).join("\n");
@@ -1309,7 +1309,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     }
     async function viaSite(d) {
       if (!SITE_ENDPOINT || !/^https?:/.test(location.protocol)) return false;
-      const svc = { "Exterior Detail": "exterior", "Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
+      const svc = { "Exterior Detail": "exterior", "Basic Interior Detail": "interior", "Premium Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
       const fd = new FormData();
       fd.append("name", d.name); fd.append("phone", d.phone); fd.append("email", d.email);
       fd.append("vehicle", d.vehicle); fd.append("service", svc); fd.append("requested", d.addons ? `${d.service} + ${d.addons}` : d.service); fd.append("location", d.town);
