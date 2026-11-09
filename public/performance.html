@@ -219,6 +219,14 @@ body::after {
 .promo-note b { color: #fff; }
 .promo-note .icon { color: var(--red-hi); width: 20px; height: 20px; margin-top: 2px; }
 .check { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line-2); background: rgba(255,255,255,.03); cursor: pointer; color: #e7e9ec; font-size: .95rem; }
+.addons-field { border: 0; padding: 0; margin: 0; min-width: 0; }
+.addons-field legend { display: flex; width: 100%; padding: 0; margin-bottom: 10px; font-weight: 700; color: #fff; font-size: .95rem; }
+.addons { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .addons { grid-template-columns: 1fr 1fr; } }
+.addon { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(255,255,255,.03); cursor: pointer; color: #e7e9ec; font-size: .92rem; font-weight: 600; transition: border-color .2s, background .2s; }
+.addon:has(input:checked) { border-color: var(--red-hi); background: rgba(225,6,0,.1); }
+.addon input { width: 20px; height: 20px; margin: 0; accent-color: var(--red); flex-shrink: 0; }
+.addon small { display: block; color: var(--muted); font-weight: 500; font-size: .8rem; margin-top: 2px; }
 .check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--red); flex-shrink: 0; }
 .check small { display: block; color: var(--muted); font-size: .85rem; }
 .micro { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 26px; font-size: .9rem; color: #c3c6cb; }
@@ -1058,6 +1066,10 @@ textarea.input { min-height: 120px; resize: vertical; }
                 <p class="err" id="town-err"></p>
               </div>
             </div>
+            <fieldset class="field addons-field">
+              <legend>Add-ons <span class="opt">Optional · pick any</span></legend>
+              <div class="addons"><label class="addon"><input type="checkbox" name="addons" value="Stain Removal &amp; Extraction" /><span>Stain Removal &amp; Extraction<small>$40/row or $90</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Pet Hair Removal" /><span>Pet Hair Removal<small>$40+</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Tree Sap Removal" /><span>Tree Sap Removal<small>$40+</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Leather Clean &amp; Condition" /><span>Leather Clean &amp; Condition<small>$30</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Engine Bay Cleaning" /><span>Engine Bay Cleaning<small>$40</small></span></label></div>
+            </fieldset>
           </div>
         </fieldset>
 
@@ -1401,10 +1413,11 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     form.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.tagName === "INPUT" && step < 3) { e.preventDefault(); nextBtn.click(); } });
 
     function data() {
-      return { vehicle: vehicle(), service: v("service"), town: v("town"), date: v("date"), notes: v("notes"), name: v("name"), phone: v("phone"), email: v("email"), firstTime: $("#firstTime").checked ? "Yes — First-Time Customer Promotion ($15 off a single service / $25 off a Full Detail)" : "No" };
+      const addons = $$('input[name="addons"]:checked', form).map((c) => c.value).join(", ");
+      return { vehicle: vehicle(), service: v("service"), addons, town: v("town"), date: v("date"), notes: v("notes"), name: v("name"), phone: v("phone"), email: v("email"), firstTime: $("#firstTime").checked ? "Yes — First-Time Customer Promotion ($15 off a single service / $25 off a Full Detail)" : "No" };
     }
     function mailto(d) {
-      const body = [`Name: ${d.name}`, `Phone: ${d.phone}`, d.email && `Email: ${d.email}`, `Vehicle: ${d.vehicle}`, `Service: ${d.service}`, `Town: ${d.town}`, d.date && `Preferred date: ${d.date}`, d.notes && `Notes: ${d.notes}`, `First-time customer: ${d.firstTime}`].filter(Boolean).join("\n");
+      const body = [`Name: ${d.name}`, `Phone: ${d.phone}`, d.email && `Email: ${d.email}`, `Vehicle: ${d.vehicle}`, `Service: ${d.service}`, d.addons && `Add-ons: ${d.addons}`, `Town: ${d.town}`, d.date && `Preferred date: ${d.date}`, d.notes && `Notes: ${d.notes}`, `First-time customer: ${d.firstTime}`].filter(Boolean).join("\n");
       return `mailto:${EMAIL}?subject=${encodeURIComponent(`Booking request — ${d.service} (${d.town})`)}&body=${encodeURIComponent(body)}`;
     }
     async function viaFormspree(d) {
@@ -1422,9 +1435,9 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
       const svc = { "Exterior Detail": "exterior", "Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
       const fd = new FormData();
       fd.append("name", d.name); fd.append("phone", d.phone); fd.append("email", d.email);
-      fd.append("vehicle", d.vehicle); fd.append("service", svc); fd.append("requested", d.service); fd.append("location", d.town);
+      fd.append("vehicle", d.vehicle); fd.append("service", svc); fd.append("requested", d.addons ? `${d.service} + ${d.addons}` : d.service); fd.append("location", d.town);
       fd.append("availability", d.date);
-      fd.append("details", [d.notes, `First-time customer: ${d.firstTime}`].filter(Boolean).join("\n\n"));
+      fd.append("details", [d.addons && `Add-ons: ${d.addons}`, d.notes, `First-time customer: ${d.firstTime}`].filter(Boolean).join("\n\n"));
       fd.append("startedAt", String(startedAt));
       fd.append("website", form.querySelector('[name="_gotcha"]').value);
       const r = await fetch(SITE_ENDPOINT, { method: "POST", body: fd });
