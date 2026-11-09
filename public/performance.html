@@ -305,6 +305,8 @@ body::after {
 .ptable thead th { font: 400 clamp(.52rem, 1.8vw, .66rem)/1.35 var(--f-wide); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); vertical-align: bottom; }
 .ptable col.c1 { width: 31%; }
 @media (min-width: 640px) { .ptable col.c1 { width: 28%; } }
+.ptable thead th { overflow-wrap: normal; }
+@media (max-width: 480px) { .ptable col.c1 { width: 30%; } .ptable thead th { letter-spacing: .02em; font-size: .5rem; } .ptable th, .ptable td { padding: 14px 3px; } }
 .ptable tbody th { overflow-wrap: normal; padding-left: 2px; text-align: left; color: #fff; font: italic 800 clamp(.95rem, 3vw, 1.15rem)/1.2 var(--f-display); }
 .ptable thead th:first-child { text-align: left; }
 .ptable td { color: #e7e9ec; font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -821,17 +823,17 @@ textarea.input { min-height: 120px; resize: vertical; }
       <p class="pricing-intro">Prices shown are for sedans. SUVs, trucks and vans are priced higher based on size. Heavily soiled vehicles may require add-ons. You'll always get a confirmed price before any work begins.</p>
       <table class="ptable">
         <caption class="sr-only">Starting prices by service and vehicle size</caption>
-        <colgroup><col class="c1" /><col /><col /><col /></colgroup>
-        <thead><tr><th scope="col">Service</th><th scope="col">Sedan</th><th scope="col">SUV / Truck</th><th scope="col">Van</th></tr></thead>
+        <colgroup><col class="c1" /><col /><col /><col /><col /></colgroup>
+        <thead><tr><th scope="col">Service</th><th scope="col">Sedan</th><th scope="col">SUV</th><th scope="col">Truck</th><th scope="col">Van</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Exterior</th><td>$100</td><td>$120</td><td>$140</td></tr>
-          <tr><th scope="row">Basic Interior</th><td>$110</td><td>$130</td><td>$150</td></tr>
-          <tr><th scope="row">Premium Interior<span class="tag-sm">Deep clean</span></th><td>$180</td><td>$210</td><td>$240</td></tr>
-          <tr><th scope="row">Express</th><td>$150</td><td>$170</td><td>$190</td></tr>
-          <tr><th scope="row">Premium</th><td>$240</td><td>$270</td><td>$300</td></tr>
+          <tr><th scope="row">Exterior</th><td>$100</td><td>$120</td><td>$140</td><td>$160</td></tr>
+          <tr><th scope="row">Basic Interior</th><td>$110</td><td>$130</td><td>$150</td><td>$170</td></tr>
+          <tr><th scope="row">Premium Interior<span class="tag-sm">Deep clean</span></th><td>$180</td><td>$210</td><td>$240</td><td>$260</td></tr>
+          <tr><th scope="row">Express</th><td>$150</td><td>$170</td><td>$200</td><td>$220</td></tr>
+          <tr><th scope="row">Premium</th><td>$240</td><td>$270</td><td>$300</td><td>$330</td></tr>
         </tbody>
       </table>
-      <p class="pricing-note">Full-size, lifted or heavy-duty trucks are priced as vans. Heavily soiled vehicles may need add-ons. We'll confirm your price before any work begins.</p>
+      <p class="pricing-note">Not sure which size your vehicle counts as? Just ask and we'll confirm your price before any work begins.</p>
     </div>
   </div>
 </section>
