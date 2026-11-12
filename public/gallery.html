@@ -492,6 +492,12 @@ textarea.input { min-height: 120px; resize: vertical; }
 .form-nav .btn { flex: 1; }
 @media (min-width: 640px) { .form-nav .btn { flex: 0 0 auto; } .form-nav .next { margin-left: auto; } }
 .privacy { margin-top: 14px; font-size: .82rem; color: var(--muted); }
+.privacy a, .legal a { text-decoration: underline; text-underline-offset: 3px; }
+.legal a:hover { color: #fff; }
+.policy { max-width: 760px; }
+.policy h2 { margin-top: 44px; font-size: clamp(1.4rem, 2.6vw, 1.8rem); }
+.policy p { margin-top: 14px; font-size: 1.02rem; line-height: 1.7; }
+.policy a { color: var(--ink-t, #fff); font-weight: 700; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
 .result { text-align: center; padding: 30px 8px; }
 .result[hidden] { display: none; }
 .result .big { width: 76px; height: 76px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: rgba(225,6,0,.15); color: var(--red-hi); box-shadow: 0 0 0 10px rgba(225,6,0,.06); }
@@ -1024,7 +1030,7 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
         </ul>
       </div>
     </div>
-    <div class="legal"><p>© 2026 Davila Detailing Co. All rights reserved.</p><p>Mobile car detailing · Ewing &amp; Mercer County, NJ</p></div>
+    <div class="legal"><p>© 2026 Davila Detailing Co. All rights reserved. · <a href="/privacy">Privacy Policy</a></p><p>Mobile car detailing · Ewing &amp; Mercer County, NJ</p></div>
   </div>
 </footer>
 

@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
         { source: "/gallery", destination: "/gallery.html" },
         { source: "/about", destination: "/about.html" },
         { source: "/book", destination: "/book.html" },
+        { source: "/privacy", destination: "/privacy.html" },
       ],
       afterFiles: [],
       fallback: [],
@@ -34,6 +35,7 @@ const nextConfig: NextConfig = {
       { source: "/gallery.html", destination: "/gallery", permanent: true },
       { source: "/about.html", destination: "/about", permanent: true },
       { source: "/book.html", destination: "/book", permanent: true },
+      { source: "/privacy.html", destination: "/privacy", permanent: true },
     ];
   },
   async headers() {
