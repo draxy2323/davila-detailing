@@ -6,12 +6,13 @@ import { business } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Davila Detailing Co. handles the information you share through our website quote form.",
+  description: "How Davila Detailing Co. handles the information you share through our website, Facebook and Instagram.",
   alternates: { canonical: "/privacy" },
 };
 
-// EDIT: Have this reviewed for your situation. It describes how the site is
-// built today (quote form delivered by email; no analytics or ad trackers).
+// Have this reviewed for your situation. It describes how the business works today:
+// website booking form delivered by email, Facebook/Instagram lead forms and
+// messages, and no analytics or ad trackers on the website itself.
 export default function PrivacyPage() {
   return (
     <>
@@ -22,30 +23,38 @@ export default function PrivacyPage() {
           <h1 className="display mt-3 text-5xl text-white sm:text-6xl">Privacy Policy</h1>
           <p>
             This policy explains how {business.name} (&ldquo;we&rdquo;, &ldquo;us&rdquo;) handles information you
-            provide through this website.
+            provide through our website, our Facebook and Instagram pages, and our ads on those platforms.
           </p>
+          <p className="text-sm">Last updated: November 2026</p>
 
           <h2>Information we collect</h2>
           <p>
-            When you request a quote, we collect the details you enter: your name, phone number, optional email address,
-            vehicle details, the service you&rsquo;re interested in, your ZIP code or town, your availability, any
-            notes, and any photos you choose to attach.
+            When you request a booking on our website, or fill out a form in one of our Facebook or Instagram ads, we
+            collect the details you enter: your name, phone number, email address (if provided), vehicle type, the
+            service you&rsquo;re interested in, your town, your preferred date, and any notes. If you message us on
+            Facebook, Instagram, by text or by email, we receive what you send us.
           </p>
 
           <h2>How we use it</h2>
           <p>
-            We use this information only to respond to your request — to prepare a quote, confirm we serve your
-            location, and arrange an appointment. We do not sell your information or use it for unrelated marketing.
+            We use this information only to respond to you: to confirm your price, check that we serve your area,
+            schedule your appointment, and follow up about that service. We do not sell, rent or share your
+            information with anyone else, and we don&rsquo;t use it for unrelated marketing.
           </p>
 
           <h2>How it&rsquo;s delivered and stored</h2>
           <p>
-            Quote requests are sent to our business email through an email delivery provider. We keep requests only as
-            long as needed to respond and to keep reasonable business records.
+            Website booking requests are sent to our business email through an email delivery provider. Information
+            from Facebook and Instagram lead forms and messages is collected by Meta under its own privacy policy and
+            made available to us through our Meta business account. We keep this information only as long as needed
+            to respond and to keep reasonable business records.
           </p>
 
           <h2>Cookies & tracking</h2>
-          <p>This website does not use advertising trackers or analytics cookies.</p>
+          <p>
+            This website does not use advertising trackers or analytics cookies. Facebook and Instagram may use
+            cookies and similar technologies under Meta&rsquo;s own policies when you view or interact with our ads.
+          </p>
 
           <h2>Your choices</h2>
           <p>
