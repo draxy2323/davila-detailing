@@ -99,7 +99,7 @@ body::after {
 .redtxt { color: var(--red-hi); }
 .h2 { font-size: clamp(2.2rem, 5.4vw, 4.2rem); margin-top: 18px; padding-right: .1em; }
 .lead { font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--steel); max-width: 60ch; margin-top: 18px; }
-.split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-right: .12em; margin-right: -.12em; padding-bottom: .06em; }
+.split .w { display: inline-block; overflow: visible; vertical-align: top; padding-right: .12em; margin-right: -.12em; padding-bottom: .06em; }
 .split .w > span { display: inline-block; will-change: transform; }
 
 /* Buttons */
@@ -1029,6 +1029,10 @@ body.has-hero .header:not(.scrolled) { background: transparent; border-color: tr
   #reviews .rev { padding: 30px 26px; }
 }
 .eyebrow.z-rule { display: flex; flex-direction: column; align-items: center; }
+/* headings: no clipping of tall letters (f, l, t) and a little more line room */
+.split .w { overflow: visible !important; }
+.phero h1 { line-height: 1.08 !important; }
+h2, .h2 { line-height: 1.1; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700;6..72,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
