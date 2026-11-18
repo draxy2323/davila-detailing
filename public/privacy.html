@@ -54,7 +54,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 90px; background: var(--ink); }
-html:not(.lenis) { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body {
   margin: 0; background: var(--ink); color: var(--steel);
   font: 400 1.0625rem/1.65 var(--f-body); -webkit-font-smoothing: antialiased; overflow-x: hidden;
@@ -1241,8 +1241,8 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
   /* ── Anchor scrolling (Lenis-aware) ── */
   function scrollToEl(el) {
     if (!el) return;
-    if (lenis) lenis.scrollTo(el, { offset: -76, duration: 1.2 });
-    else el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    // Jump straight there (no smooth gliding).
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 76, behavior: "instant" });
   }
   function goToQuote(service) {
     if (!$("#qform")) { location.href = "/book" + (service ? "?service=" + encodeURIComponent(service) : ""); return; }
@@ -1308,7 +1308,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
 
   /* ── Magnetic buttons + 3D tilt cards (fine pointers only) ── */
   if (finePointer && !reduce) {
-    $$(".magnetic").forEach((el) => {
+    if (false) $$(".magnetic").forEach((el) => {
       el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();
         const x = (e.clientX - r.left - r.width / 2) * 0.25, y = (e.clientY - r.top - r.height / 2) * 0.35;
@@ -1456,7 +1456,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     if (reduce || !window.gsap) { $("#steps").classList.add("no-pin"); return; }
     gsap.registerPlugin(ScrollTrigger);
 
-    if (window.Lenis) {
+    if (false && window.Lenis) {  // smooth-scroll library off: normal, still scrolling
       lenis = new Lenis({ duration: 1.1, smoothWheel: true });
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add((t) => lenis.raf(t * 1000));
