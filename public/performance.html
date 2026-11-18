@@ -860,7 +860,198 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
 .towns button:hover, .towns button.hl { background: var(--ink-t) !important; }
 .choice input:checked + span, .addon:has(input:checked) { background: rgba(255,241,240,.8) !important; border-color: var(--red) !important; }
 .header.scrolled { background: rgba(244,242,238,.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); backdrop-filter: blur(20px) saturate(1.6); }
+/* ═════════════ Zarla-style layer (PREVIEW): serif headings, white/stone bands, red accents ═════════════ */
+:root { --z-serif: "Newsreader", Georgia, serif; --z-sans: "Inter", system-ui, sans-serif; --z-stone: #F4F2EE; --z-line: #E3E0DA; --z-ink: #0E0E0F; --z-body: #5B5B60; }
+html, body { background: #fff; }
+body { font-family: var(--z-sans); color: var(--z-body); }
+body::before, .grain, .blob, .blobs { display: none !important; }
+h1, h2, h3, h4, .h2, .phero h1, .final h2 { font-family: var(--z-serif) !important; font-style: normal; letter-spacing: -.01em !important; color: var(--z-ink); }
+h2, .h2 { font-weight: 800; }
+body .chrome, body .chrome .w > span { color: inherit !important; -webkit-text-fill-color: currentColor !important; }
+.eyebrow { font-family: var(--z-sans); color: var(--red); letter-spacing: .22em; font-weight: 500; }
+.eyebrow::before { display: none; }
+.lead, .z-lead { font-family: var(--z-sans); color: var(--z-body); }
+.btn { border-radius: 2px; font-family: var(--z-sans); font-weight: 600; letter-spacing: 0; }
+.btn-primary { background: var(--red); color: #fff; }
+.btn-ghost { box-shadow: inset 0 0 0 1.5px var(--z-ink); }
+.card, .z-card { border-radius: 2px !important; }
+.section { background: #fff; }
+.process, #reviews { background: var(--z-stone); }
+
+/* header: clean white bar */
+.header, .header.scrolled { background: rgba(255,255,255,.96); border-bottom: 1px solid var(--z-line); }
+body.has-hero .header:not(.scrolled) { background: transparent; border-color: transparent; }
+.nav a { font-family: var(--z-sans); font-weight: 500; }
+
+/* HERO — centered, single dark photo */
+.hero { min-height: 92svh; align-items: center; text-align: center; }
+.hero-grid, .hs-ctrl, .scroll-cue { display: none !important; }
+.hero-scrim { background: rgba(0,0,0,.62) !important; }
+.hero .wrap { display: flex; justify-content: center; }
+.z-center { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+.z-pill { display: inline-block; padding: 12px 24px; border-radius: 999px; background: rgba(60,60,64,.75); color: #E8E8EA; font: 500 .82rem/1 var(--z-sans); letter-spacing: .28em; text-transform: uppercase; }
+.hero h1 { font-family: var(--z-serif) !important; font-weight: 500; color: #F6F4EF !important; font-size: clamp(2.6rem, 5.6vw, 5.4rem); line-height: 1.06; max-width: 15ch; margin-top: 30px; letter-spacing: -.015em !important; }
+.hero .sub { color: #E4E4E6; max-width: 54ch; margin: 26px auto 0; font-size: clamp(1.05rem, 1.5vw, 1.35rem); line-height: 1.65; }
+.hero .ctas { justify-content: center; gap: 22px; margin-top: 40px; }
+.hero .ctas .btn { min-height: 66px; padding-inline: 46px; font-size: 1.15rem; border-radius: 2px; }
+.z-outline { color: #fff; background: transparent; box-shadow: inset 0 0 0 2px rgba(255,255,255,.85); }
+.z-outline:hover { background: #fff; color: var(--z-ink); }
+.z-checks { list-style: none; padding: 0; margin: 44px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.z-checks li { display: inline-flex; align-items: center; gap: 10px; padding: 11px 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.28); background: rgba(20,20,22,.45); color: #F0F0F2; font-size: 1.02rem; }
+.z-checks .icon { width: 18px; height: 18px; color: #fff; }
+
+/* STATS */
+.z-stats { background: #fff; padding: clamp(56px, 7vw, 100px) 0; }
+.z-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1600px; }
+.z-stat { border: 1px solid var(--z-line); border-radius: 2px; padding: 44px 16px; text-align: center; }
+.z-stat b { display: block; font: 800 clamp(2.4rem, 3.6vw, 3.4rem)/1 var(--z-serif); color: var(--z-ink); }
+.z-stat span { display: block; margin-top: 14px; font-size: 1.12rem; color: var(--z-body); }
+
+/* generic section */
+.z-sec { padding: clamp(70px, 9vw, 130px) 0; background: #fff; }
+.z-alt { background: var(--z-stone); }
+.z-h2 { font: 800 clamp(2.1rem, 4vw, 3.4rem)/1.12 var(--z-serif); color: var(--z-ink); margin: 0; }
+.z-lead { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.6; margin-top: 22px; max-width: 46ch; }
+.z-c { text-align: center; margin-left: auto; margin-right: auto; }
+.z-eyebrow { font: 500 .9rem/1 var(--z-sans); letter-spacing: .26em; text-transform: uppercase; color: var(--red); margin: 0 0 22px; }
+.z-rule::after { content: ""; display: block; width: 44px; height: 1px; background: var(--red); margin: 18px auto 0; opacity: .6; }
+.z-narrow { max-width: 1120px; }
+
+/* services grid */
+.z-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 70px; }
+.z-card { display: block; background: #fff; border: 1px solid var(--z-line); padding: 40px 34px 44px; transition: background .25s, transform .25s, box-shadow .25s; }
+.z-card:hover, .z-card.z-dark { background: var(--z-ink); box-shadow: 0 24px 40px -22px rgba(0,0,0,.45); }
+.z-card:hover h3, .z-card.z-dark h3 { color: #fff; }
+.z-card:hover p, .z-card.z-dark p { color: #B9BCC2; }
+.z-wide { grid-column: span 2; }
+.z-ic { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 8px; background: var(--z-stone); color: var(--red); }
+.z-card:hover .z-ic, .z-dark .z-ic { background: #2A2A2D; color: #fff; }
+.z-ic .icon { width: 30px; height: 30px; }
+.z-card h3 { margin: 34px 0 0; font: 700 1.65rem/1.2 var(--z-serif); color: var(--z-ink); }
+.z-card p { margin: 10px 0 0; color: var(--z-body); font-size: 1rem; }
+
+/* why split */
+.z-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
+.z-split .z-lead { max-width: none; }
+.z-ticks { list-style: none; padding: 0; margin: 36px 0 40px; display: grid; gap: 20px; }
+.z-ticks li { display: flex; align-items: center; gap: 18px; color: var(--z-ink); font-size: 1.2rem; }
+.z-ticks .icon { flex: none; width: 32px; height: 32px; padding: 8px; border-radius: 50%; background: #F3ECEC; color: var(--red); }
+.z-split .btn { min-height: 64px; padding-inline: 42px; font-size: 1.12rem; }
+.z-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+
+/* standard checklist */
+.z-list { list-style: none; padding: 0; margin: 70px auto 0; max-width: 1120px; }
+.z-list li { display: flex; gap: 22px; padding: 28px 0; border-bottom: 1px solid var(--z-line); }
+.z-list li:last-child { border-bottom: 0; }
+.z-dot { flex: none; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--red); color: #fff; }
+.z-dot .icon { width: 20px; height: 20px; }
+.z-list h3 { margin: 4px 0 0; font: 700 clamp(1.4rem, 2.2vw, 1.9rem)/1.2 var(--z-serif); color: var(--z-ink); }
+.z-list p { margin: 8px 0 0; font-size: 1.15rem; color: var(--z-body); }
+
+/* sub-page headers + final CTA in the hero's dark style */
+.phero { background: #111113 !important; border: 0 !important; text-align: center; }
+.phero .wrap { display: flex; flex-direction: column; align-items: center; }
+.phero h1 { color: #F6F4EF !important; font-weight: 500 !important; }
+.phero .lead { color: #D9D9DC; margin-inline: auto; }
+.phero .eyebrow { display: inline-block; padding: 11px 22px; border-radius: 999px; background: rgba(70,70,74,.8); color: #E8E8EA; }
+.phero .ctas { justify-content: center; }
+.phero .btn-ghost { color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.8); }
+.final { border-radius: 2px !important; background: var(--z-ink) !important; }
+.final h2 { color: #F6F4EF !important; font-weight: 500 !important; }
+
+@media (max-width: 900px) {
+  .z-stat-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .z-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 40px; }
+  .z-wide { grid-column: auto; }
+  .z-split { grid-template-columns: 1fr; }
+  .z-photo { order: -1; }
+  .hero .ctas .btn { width: 100%; min-height: 58px; }
+  .hero .ctas { width: 100%; gap: 12px; }
+  .z-checks li { font-size: .9rem; padding: 9px 16px; }
+  .z-pill { font-size: .66rem; letter-spacing: .18em; padding: 10px 16px; }
+}
+
+.rev .stars svg, .stars svg { fill: var(--red) !important; color: var(--red) !important; }
+/* numbered difference list */
+.z-numlist { max-width: 1120px; }
+.z-num { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--red); color: #fff; font: 700 1.1rem/1 var(--z-sans); }
+/* recent work grid */
+.z-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px; }
+.z-photos figure { margin: 0; overflow: hidden; border-radius: 2px; }
+.z-photos img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .5s; }
+.z-photos figure:hover img { transform: scale(1.04); }
+.z-more { margin-top: 48px; }
+.z-more .btn { min-height: 58px; padding-inline: 36px; }
+/* process timeline */
+.z-steps { list-style: none; padding: 0; margin: 60px auto 0; max-width: 900px; }
+.z-steps li { position: relative; display: flex; gap: 34px; padding-bottom: 46px; }
+.z-steps li:last-child { padding-bottom: 0; }
+.z-steps li:not(:last-child)::before { content: ""; position: absolute; left: 33px; top: 68px; bottom: 0; width: 2px; background: var(--z-ink); }
+.z-step { flex: none; display: grid; place-items: center; width: 68px; height: 68px; border-radius: 50%; background: var(--z-ink); color: #fff; font: 700 1.6rem/1 var(--z-serif); }
+.z-steps h3 { margin: 10px 0 0; font: 700 clamp(1.4rem, 2.2vw, 1.9rem)/1.2 var(--z-serif); color: var(--z-ink); }
+.z-steps p { margin: 10px 0 0; font-size: 1.15rem; line-height: 1.6; color: var(--z-body); }
+@media (max-width: 900px) {
+  .z-photos { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 36px; }
+  .z-steps li { gap: 18px; }
+  .z-step { width: 50px; height: 50px; font-size: 1.25rem; }
+  .z-steps li:not(:last-child)::before { left: 24px; top: 50px; }
+  .z-num { width: 42px; height: 42px; font-size: .95rem; }
+}
+/* centered section heads, like the template */
+#reviews .wrap > .eyebrow, #reviews .wrap > h2, #reviews .wrap > .lead { text-align: center; margin-left: auto; margin-right: auto; }
+#reviews h2 { font-weight: 800; font-size: clamp(2.1rem, 4vw, 3.4rem); letter-spacing: -.01em !important; }
+#reviews .rev-grid { justify-content: center; max-width: 1000px; margin-left: auto; margin-right: auto; }
+/* reviews: serif quotes in bordered white cards */
+#reviews .rev-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 460px)) !important; gap: 32px; }
+#reviews .rev { background: #fff !important; border: 1px solid var(--z-line) !important; box-shadow: none !important; padding: 44px 44px 40px; }
+#reviews .rev blockquote { font: 400 1.35rem/1.6 var(--z-serif); color: var(--z-ink); }
+#reviews .rev blockquote::before { content: "\201C"; display: block; font: 700 3rem/1 var(--z-serif); color: #E6C9C7; height: 30px; margin-bottom: 14px; }
+#reviews .rev figcaption { font: 700 1.2rem/1.3 var(--z-serif); color: var(--z-ink); }
+#reviews .rev figcaption span { font-family: var(--z-sans); font-weight: 400; font-size: 1rem; color: var(--z-body); margin-top: 4px; }
+#reviews .stars svg { width: 24px; height: 24px; }
+/* CTA band */
+.z-band { background: var(--z-ink); padding: clamp(60px, 7vw, 100px) 0; }
+.z-band-in { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.z-band h2 { margin: 0; font: 700 clamp(2rem, 3.6vw, 3.2rem)/1.15 var(--z-serif) !important; color: #F6F4EF !important; max-width: 16ch; }
+.z-band p { margin: 26px 0 0; color: #D2D3D6; font-size: 1.2rem; }
+.z-band-cta { display: flex; align-items: center; gap: 46px; flex-wrap: wrap; }
+.z-band-cta .btn { min-height: 66px; padding-inline: 46px; font-size: 1.15rem; }
+.z-band-ph { color: #fff; font-weight: 600; font-size: 1.25rem; }
+.z-band-ph:hover { color: #fff; text-decoration: underline; }
+/* FAQ: centered accordion */
+#faq { background: var(--z-stone) !important; padding-top: clamp(70px, 9vw, 130px) !important; }
+#faq .faq-grid { grid-template-columns: 1fr !important; max-width: 1050px; gap: 30px; }
+#faq .faq-grid > div:first-child { text-align: center; }
+#faq h2 { font-weight: 800; font-size: clamp(2.1rem, 4vw, 3.4rem); }
+#faq .lead { margin-inline: auto; }
+#faq .acc { border-top: 0; }
+#faq .acc-item { border-bottom: 1px solid #DAD6CF; }
+#faq .acc-btn { font: 700 clamp(1.15rem, 1.8vw, 1.6rem)/1.3 var(--z-serif) !important; color: var(--z-ink) !important; padding: 30px 0; }
+#faq .acc-btn .pm { border-radius: 50%; border: 0; background: #E8E3DC; color: var(--z-ink); }
+#faq .acc-btn[aria-expanded="true"] .pm { background: var(--red); color: #fff; }
+#faq .acc-panel p { font-size: 1.1rem; color: var(--z-body); }
+/* booking form: centered head, form card below */
+.quote { background: #fff !important; }
+.quote-grid { grid-template-columns: 1fr !important; max-width: 1050px; gap: 44px !important; }
+.quote-side { text-align: center; }
+.quote-side h2 { font-weight: 800; font-size: clamp(2.1rem, 4vw, 3.4rem); }
+.quote-side .lead { margin-inline: auto; }
+.quote-side .promo-note { max-width: 760px; margin-inline: auto; text-align: left; }
+.quote-side .contact-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; text-align: left; }
+.quote-side .reassure { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; }
+.form-card { border: 1px solid var(--z-line) !important; border-radius: 2px !important; box-shadow: 0 30px 60px -40px rgba(0,0,0,.35) !important; }
+.form-card input:not([type=checkbox]):not([type=radio]), .form-card select, .form-card textarea { border: 1px solid #D8D4CD !important; border-radius: 2px !important; background: #fff !important; }
+/* footer: serif column heads */
+.footer h2 { font: 700 1.5rem/1.2 var(--z-serif) !important; letter-spacing: 0 !important; text-transform: none !important; }
+@media (max-width: 900px) {
+  .z-band-cta { gap: 22px; width: 100%; }
+  .z-band-cta .btn { width: 100%; }
+  .quote-side .contact-list { grid-template-columns: 1fr; }
+  #reviews .rev { padding: 30px 26px; }
+}
+.eyebrow.z-rule { display: flex; flex-direction: column; align-items: center; }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700;6..72,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body class="has-hero">
@@ -885,7 +1076,7 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
     </nav>
     <div class="head-actions">
       <a class="head-phone" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>(609) 613-3772</a>
-      <a class="btn btn-primary btn-sm head-cta magnetic" href="/book" data-quote>Book Now</a>
+      <a class="btn btn-primary btn-sm head-cta magnetic" href="#quote" data-quote>Book Now</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><svg class="icon"><use href="#i-menu"/></svg></button>
     </div>
   </div>
@@ -901,7 +1092,7 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
     <a class="l" href="/about#faq">FAQ <svg class="icon"><use href="#i-arrow-right"/></svg></a>
   </nav>
   <div class="btns">
-    <a class="btn btn-primary" href="/book" data-quote>Book Now</a>
+    <a class="btn btn-primary" href="#quote" data-quote>Book Now</a>
     <a class="btn btn-ghost" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call (609) 613-3772</a>
   </div>
 </div>
@@ -921,25 +1112,19 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
   <div class="hero-scrim" aria-hidden="true"></div>
 
   <div class="wrap">
-    <div class="hero-content" data-parallax="-60">
-      <div class="hero-tags" data-hero>
-        <p class="pill"><span class="dot" aria-hidden="true"></span>Mobile detailing · Based in Ewing, NJ</p>
-        <a class="promo" href="/book" data-quote><span class="tag">First-time customers</span><span class="sm-hide">$15 off any service · $25 off any package</span><span class="sm-show">Up to $25 off</span><svg class="icon"><use href="#i-arrow-right"/></svg></a>
-      </div>
-      <h1 id="hero-title">
-        <span class="split" data-hero-split>Showroom shine.</span>
-        <span class="l2 chrome split" data-hero-split>Delivered to your driveway.</span>
-      </h1>
-      <p class="sub" data-hero>Professional mobile car detailing at your home or workplace — anywhere in Mercer County, NJ. You stay put. We bring the shine.</p>
+    <div class="hero-content z-center">
+      <p class="z-pill" data-hero>Mercer County &middot; Mobile car detailing</p>
+      <h1 id="hero-title" data-hero>A Showroom Shine, Delivered to Your Driveway</h1>
+      <p class="sub" data-hero>Hand-detailed inside and out at your home or workplace, anywhere in Mercer County, NJ. Upfront pricing, no drop-offs, no waiting rooms.</p>
       <div class="ctas" data-hero>
-        <a class="btn btn-primary magnetic" href="/book" data-quote>Book Now <svg class="icon"><use href="#i-arrow-right"/></svg></a>
-        <a class="btn btn-ghost magnetic" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call (609) 613-3772</a>
+        <a class="btn btn-primary" href="#quote" data-quote>Book Now</a>
+        <a class="btn z-outline" href="/services">Explore Services</a>
       </div>
-      <p class="micro" data-hero>
-        <span><svg class="icon"><use href="#i-truck"/></svg>Fully mobile</span>
-        <span><svg class="icon"><use href="#i-map-pin"/></svg>Serving all of Mercer County</span>
-        <span><svg class="icon"><use href="#i-badge-check"/></svg>Upfront pricing, no surprises</span>
-      </p>
+      <ul class="z-checks" data-hero>
+        <li><svg class="icon"><use href="#i-circle-check"/></svg>Fully mobile</li>
+        <li><svg class="icon"><use href="#i-circle-check"/></svg>Upfront pricing</li>
+        <li><svg class="icon"><use href="#i-circle-check"/></svg>Up to $25 off your first detail</li>
+      </ul>
     </div>
   </div>
   <div class="hs-ctrl" role="group" aria-label="Photo slideshow of our work">
@@ -951,118 +1136,116 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
 </section>
 
 
-<!-- ═════════════ TRUST BAR ═════════════ -->
-<section class="trust" aria-label="Why it's easy">
-  <ul class="wrap">
-    <li data-reveal><span class="ic"><svg class="icon"><use href="#i-truck"/></svg></span>We come to you</li>
-    <li data-reveal><span class="ic"><svg class="icon"><use href="#i-gem"/></svg></span>Quality products</li>
-    <li data-reveal><span class="ic"><svg class="icon"><use href="#i-scan-search"/></svg></span>Attention to detail</li>
-    <li data-reveal><span class="ic"><svg class="icon"><use href="#i-calendar-check"/></svg></span>Easy online booking</li>
-  </ul>
+<!-- ═════════════ STATS ═════════════ -->
+<section class="z-stats" aria-label="At a glance">
+  <div class="wrap z-stat-grid">
+    <div class="z-stat" data-reveal><b>100%</b><span>Mobile &mdash; We Come to You</span></div>
+    <div class="z-stat" data-reveal><b>11</b><span>Mercer County Towns</span></div>
+    <div class="z-stat" data-reveal><b>$100</b><span>Details Starting At</span></div>
+    <div class="z-stat" data-reveal><b>0</b><span>Trips to the Shop</span></div>
+  </div>
 </section>
 
 
 <!-- ═════════════ SERVICES PREVIEW ═════════════ -->
-<section class="section" id="services" aria-labelledby="svcp-title">
+<section class="z-sec z-alt" id="services" aria-labelledby="zsvc-title">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>Services</p>
-    <h2 class="h2 split" id="svcp-title" data-split>The outside, the inside, <span class="chrome">or both.</span></h2>
-    <p class="lead" data-reveal>Done in your driveway or parking spot, anywhere in Mercer County. First-time customers get $15 off any service or $25 off any package.</p>
-    <div class="svc-grid three">
-      <a class="card svc tilt" href="/services" data-reveal>
-        <span class="glare" aria-hidden="true"></span>
-        <span class="ic"><svg class="icon"><use href="#i-droplets"/></svg></span>
-        <h3>Exterior Detail</h3>
-        <p class="svc-price">Starting at <b>$100</b></p>
-        <p class="svc-desc">Wash &amp; wax, bug &amp; tar removal, wheels, tires and glass.</p>
-        <div class="foot"><span class="more">See what's included <svg class="icon"><use href="#i-arrow-right"/></svg></span></div>
-      </a>
-      <a class="card svc tilt" href="/services" data-reveal>
-        <span class="glare" aria-hidden="true"></span>
-        <span class="ic"><svg class="icon"><use href="#i-armchair"/></svg></span>
-        <h3>Interior Detail</h3>
-        <p class="svc-price">Starting at <b>$110</b></p>
-        <p class="svc-desc">Basic vacuum &amp; wipe-down, or a Premium deep clean with steam &amp; shampoo from $200.</p>
-        <div class="foot"><span class="more">See what's included <svg class="icon"><use href="#i-arrow-right"/></svg></span></div>
-      </a>
-      <a class="card svc tilt" href="/services" data-reveal>
-        <span class="glare" aria-hidden="true"></span>
-        <span class="ic"><svg class="icon"><use href="#i-sparkles"/></svg></span>
-        <h3>Detail Packages</h3>
-        <p class="svc-price">Starting at <b>$170</b></p>
-        <p class="svc-desc">Express or Premium: inside and out in one visit, for less.</p>
-        <div class="foot"><span class="more">See what's included <svg class="icon"><use href="#i-arrow-right"/></svg></span></div>
-      </a>
+    <h2 class="z-h2 z-c" id="zsvc-title" data-reveal>Detailing, Tailored to Your Car</h2>
+    <p class="z-lead z-c" data-reveal>From daily drivers to family haulers &mdash; a service for every car, done in your driveway.</p>
+    <div class="z-grid">
+      <a class="z-card z-wide z-dark" href="/services#pricing" data-reveal><span class="z-ic"><svg class="icon"><use href="#i-sparkles"/></svg></span><h3>Detail Packages</h3><p>Express or Premium, inside &amp; out &middot; from $170</p></a>
+      <a class="z-card" href="/services#pricing" data-reveal><span class="z-ic"><svg class="icon"><use href="#i-droplets"/></svg></span><h3>Exterior Detail</h3><p>Wash &amp; wax, wheels, tires &amp; glass &middot; from $100</p></a>
+      <a class="z-card" href="/services#pricing" data-reveal><span class="z-ic"><svg class="icon"><use href="#i-armchair"/></svg></span><h3>Interior Detail</h3><p>Vacuum, wipe-down, steam &amp; shampoo &middot; from $110</p></a>
+      <a class="z-card" href="/services#pricing" data-reveal><span class="z-ic"><svg class="icon"><use href="#i-paw-print"/></svg></span><h3>Pet Hair Removal</h3><p>Add-on for any interior service</p></a>
+      <a class="z-card" href="/services#pricing" data-reveal><span class="z-ic"><svg class="icon"><use href="#i-cog"/></svg></span><h3>Engine Bay Cleaning</h3><p>Add-on for any service</p></a>
+      <a class="z-card" href="/services#pricing" data-reveal><span class="z-ic"><svg class="icon"><use href="#i-truck"/></svg></span><h3>Fleet &amp; Multi-Car</h3><p>Call for multi-vehicle pricing</p></a>
     </div>
-    <div class="see-all" data-reveal><a class="btn btn-ghost" href="/services#pricing">See all prices &amp; add-ons <svg class="icon"><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 
 
-<!-- ═════════════ HOW IT WORKS (pinned on desktop) ═════════════ -->
-<section class="section process" id="process" aria-labelledby="proc-title">
+<!-- ═════════════ WHY MOBILE ═════════════ -->
+<section class="z-sec" aria-labelledby="zwhy-title">
+  <div class="wrap z-split">
+    <div>
+      <p class="z-eyebrow" data-reveal>Why mobile</p>
+      <h2 class="z-h2" id="zwhy-title" data-reveal>A Detail-Shop Finish Without Leaving Home</h2>
+      <p class="z-lead" data-reveal>We bring the equipment and the products to your driveway or parking spot. You keep your day, and your car gets the same careful, hands-on work &mdash; the door jambs, the vents, the wheel barrels, the spots others skip.</p>
+      <ul class="z-ticks" data-reveal>
+        <li><svg class="icon"><use href="#i-check"/></svg>Done at your home or workplace</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Your price confirmed before we start</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Local and owner-operated, based in Ewing</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Easy online booking</li>
+      </ul>
+      <a class="btn btn-primary" href="#quote" data-quote data-reveal>Book Your Detail</a>
+    </div>
+    <div class="z-photo" data-reveal><img src="/gallery/hero-sienna-foam-wide.webp" alt="Foam pre-wash on a Toyota Sienna during a mobile detail" loading="lazy" /></div>
+  </div>
+</section>
+
+
+<!-- ═════════════ THE STANDARD ═════════════ -->
+<section class="z-sec z-alt" aria-labelledby="zstd-title">
+  <div class="wrap z-narrow">
+    <p class="z-eyebrow z-c z-rule" data-reveal>The standard</p>
+    <h2 class="z-h2 z-c" id="zstd-title" data-reveal>What Every Davila Detail Includes</h2>
+    <p class="z-lead z-c" data-reveal>No shortcuts. Every job starts with a clear price, and you never have to leave home.</p>
+    <ul class="z-list">
+      <li data-reveal><span class="z-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><h3>Upfront Pricing</h3><p>Your price is confirmed by vehicle size and condition before any work begins.</p></div></li>
+      <li data-reveal><span class="z-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><h3>We Come to You</h3><p>Home, work or apartment lot &mdash; anywhere in Mercer County.</p></div></li>
+      <li data-reveal><span class="z-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><h3>Careful, Hands-On Work</h3><p>Products chosen to clean safely and leave a finish you&rsquo;ll notice.</p></div></li>
+      <li data-reveal><span class="z-dot"><svg class="icon"><use href="#i-check"/></svg></span><div><h3>Easy Booking</h3><p>Book online or call or text (609) 613-3772, and we&rsquo;ll lock in a time that works for you.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═════════════ DIFFERENCE ═════════════ -->
+<section class="z-sec" aria-labelledby="zdiff-title">
+  <div class="wrap z-narrow">
+    <p class="z-eyebrow z-c" data-reveal>Why drivers choose us</p>
+    <h2 class="z-h2 z-c" id="zdiff-title" data-reveal>The Davila Difference</h2>
+    <ul class="z-list z-numlist">
+      <li data-reveal><span class="z-num">01</span><div><h3>We Come to You</h3><p>No drop-offs, no waiting rooms. Home or work, anywhere in Mercer County.</p></div></li>
+      <li data-reveal><span class="z-num">02</span><div><h3>Owner-Operated</h3><p>You deal directly with the person doing the work, from the first message to the final wipe.</p></div></li>
+      <li data-reveal><span class="z-num">03</span><div><h3>Honest, Upfront Pricing</h3><p>Your price is confirmed before we start, and we never add an add-on without your OK.</p></div></li>
+      <li data-reveal><span class="z-num">04</span><div><h3>The Spots Others Skip</h3><p>Door jambs, vents, cup holders and wheel barrels get the same attention as the paint.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═════════════ RECENT WORK ═════════════ -->
+<section class="z-sec z-alt" id="gallery" aria-labelledby="zwork-title">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>How it works</p>
-    <h2 class="h2 split" id="proc-title" data-split>Three steps. <span class="chrome">Zero hassle.</span></h2>
-    <div class="steps-wrap" id="steps">
-    <span class="track" aria-hidden="true"><i id="trackFill"></i></span>
-    <ol class="steps">
-      <li class="card step on">
-        <span class="num">1</span><svg class="icon"><use href="#i-clipboard-list"/></svg>
-        <h3>Book Online</h3>
-        <p>Tell us about your car and what it needs. It takes about a minute.</p>
-      </li>
-      <li class="card step on">
-        <span class="num">2</span><svg class="icon"><use href="#i-truck"/></svg>
-        <h3>We Arrive at Your Location</h3>
-        <p>We pull up at your home or workplace at the time we agreed.</p>
-      </li>
-      <li class="card step on">
-        <span class="num">3</span><svg class="icon"><use href="#i-sparkles"/></svg>
-        <h3>Enjoy the Shine</h3>
-        <p>Walk out to a clean, glossy car — without losing your day.</p>
-      </li>
+    <p class="z-eyebrow z-c" data-reveal>Recent work</p>
+    <h2 class="z-h2 z-c" id="zwork-title" data-reveal>Washed, Detailed, Delivered</h2>
+    <p class="z-lead z-c" data-reveal>Real cars, detailed right in their owners&rsquo; driveways.</p>
+    <div class="z-photos">
+      <figure data-reveal><img src="/gallery/hero-sienna-clean-wide.webp" alt="Finished exterior on a Toyota Sienna" loading="lazy" /></figure>
+      <figure data-reveal><img src="/gallery/chr-interior-after-1200.webp" alt="Interior after a detail" loading="lazy" /></figure>
+      <figure data-reveal><img src="/gallery/hero-mustang-foam-wide.webp" alt="Foam pre-wash on a Ford Mustang" loading="lazy" /></figure>
+      <figure data-reveal><img src="/gallery/tesla-exterior-600.webp" alt="Finished exterior on a Tesla" loading="lazy" /></figure>
+      <figure data-reveal><img src="/gallery/hero-civic-interior-wide.webp" alt="Honda Civic interior detail" loading="lazy" /></figure>
+      <figure data-reveal><img src="/gallery/gmc-wheel-600.webp" alt="Cleaned wheel and tire" loading="lazy" /></figure>
+    </div>
+    <div class="z-c z-more" data-reveal><a class="btn btn-ghost" href="/gallery">See the Full Gallery</a></div>
+  </div>
+</section>
+
+
+<!-- ═════════════ OUR PROCESS ═════════════ -->
+<section class="z-sec" aria-labelledby="zproc-title">
+  <div class="wrap z-narrow">
+    <p class="z-eyebrow z-c z-rule" data-reveal>Our process</p>
+    <h2 class="z-h2 z-c" id="zproc-title" data-reveal>How a Mobile Detail Comes Together</h2>
+    <p class="z-lead z-c" data-reveal>Four steps, and you never leave home.</p>
+    <ol class="z-steps">
+      <li data-reveal><span class="z-step">1</span><div><h3>Book Online</h3><p>Tell us about your car and what it needs. It takes about a minute.</p></div></li>
+      <li data-reveal><span class="z-step">2</span><div><h3>Confirm Your Price</h3><p>We confirm your price based on your vehicle&rsquo;s size and condition, and lock in a time.</p></div></li>
+      <li data-reveal><span class="z-step">3</span><div><h3>We Arrive at Your Location</h3><p>We pull up at your home or workplace at the time we agreed.</p></div></li>
+      <li data-reveal><span class="z-step">4</span><div><h3>Enjoy the Shine</h3><p>Walk out to a clean, glossy car, without losing your day.</p></div></li>
     </ol>
-    </div>
-    <div style="margin-top:44px" data-reveal><a class="btn btn-primary magnetic" href="/book" data-quote>Book Now <svg class="icon"><use href="#i-arrow-right"/></svg></a></div>
-  </div>
-</section>
-
-
-<!-- ═════════════ GALLERY ═════════════ -->
-<section class="section" id="gallery" aria-labelledby="gal-title">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>Before &amp; After</p>
-    <h2 class="h2 split" id="gal-title" data-split>See the <span class="chrome">difference.</span></h2>
-    <p class="lead" data-reveal>Drag the slider to compare. Every photo and video here is a real Davila Detailing Co. job.</p>
-
-    <div class="ba-wrap">
-      <!-- Real job photos live in /gallery (square crops of the same angle, plate blurred). -->
-      <div class="ba" id="ba" tabindex="0" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% before">
-        <div class="pane after">
-          <img class="ba-img" src="/gallery/sienna-after-1200.webp" srcset="/gallery/sienna-after-700.webp 700w, /gallery/sienna-after-1200.webp 1200w" sizes="(min-width: 1000px) 50vw, 100vw" width="1200" height="1200" alt="Gray Toyota Sienna after its detail — clean, glossy paint and clear glass" loading="lazy" decoding="async" draggable="false" />
-          <span class="tag">After</span>
-        </div>
-        <div class="pane before">
-          <img class="ba-img" src="/gallery/sienna-before-1200.webp" srcset="/gallery/sienna-before-700.webp 700w, /gallery/sienna-before-1200.webp 1200w" sizes="(min-width: 1000px) 50vw, 100vw" width="1200" height="1200" alt="Gray Toyota Sienna before its detail, with dusty paint" loading="lazy" decoding="async" draggable="false" />
-          <span class="tag">Before</span>
-        </div>
-        <span class="ba-cap">Toyota Sienna</span>
-        <div class="handle" aria-hidden="true"><span class="knob"><svg class="icon"><use href="#i-move-horizontal"/></svg></span></div>
-      </div>
-
-      <!-- Add more real photos here as <div class="thumb real">…</div> (square, 600px WebP in /gallery). -->
-      <div class="thumbs">
-        <div class="thumb real" data-reveal><img src="/gallery/sienna-exterior-600.webp" width="600" height="600" alt="Freshly washed gray Toyota Sienna in a driveway, side view" loading="lazy" decoding="async" /><span class="cap">Exterior</span></div>
-        <div class="thumb real" data-reveal><img src="/gallery/civic-interior-600.webp" width="600" height="600" alt="Clean Honda Civic front interior — seats, dash and carpets" loading="lazy" decoding="async" /><span class="cap">Interior</span></div>
-        <div class="thumb real" data-reveal><img src="/gallery/mustang-foam-600.webp" width="600" height="600" alt="Ford Mustang covered in foam during a pre-wash at dusk" loading="lazy" decoding="async" /><span class="cap">Foam pre-wash</span></div>
-        <div class="thumb real" data-reveal><img src="/gallery/gmc-wheel-600.webp" width="600" height="600" alt="Clean GMC alloy wheel with a dressed black tire" loading="lazy" decoding="async" /><span class="cap">Wheels</span></div>
-        <div class="thumb real" data-reveal><img src="/gallery/tesla-exterior-600.webp" width="600" height="600" alt="Freshly washed silver Tesla Model 3 in a driveway at sunset" loading="lazy" decoding="async" /><span class="cap">Exterior · Tesla</span></div>
-        <div class="thumb real" data-reveal><img src="/gallery/chr-trunk-after-600.webp" width="600" height="600" alt="Clean, vacuumed cargo area of a Toyota C-HR" loading="lazy" decoding="async" /><span class="cap">Cargo area</span></div>
-      </div>
-    </div>
-
-    <div class="see-all" data-reveal><a class="btn btn-ghost" href="/gallery">See the full gallery <svg class="icon"><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 
@@ -1072,8 +1255,8 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
 <section class="section process" id="reviews" aria-labelledby="rev-title">
   <!-- Real Google reviews, quoted word for word. Add a new <figure> for each new review. -->
   <div class="wrap">
-    <p class="eyebrow" data-reveal>Reviews</p>
-    <h2 class="h2 split" id="rev-title" data-split>What drivers <span class="chrome">are saying.</span></h2>
+    <p class="eyebrow z-rule" data-reveal>Customer reviews</p>
+    <h2 class="h2 split" id="rev-title" data-split>What Our Customers Are Saying</h2>
     <p class="lead" data-reveal>Real reviews from real customers on Google.</p>
     <div class="rev-grid">
       <figure class="card rev" data-reveal><span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg></span><blockquote>Amazing job professional and exceptional work attention to detail, will call again for all the rest of the family cars</blockquote><figcaption>Karen M.<span>Google review</span></figcaption></figure>
@@ -1083,19 +1266,176 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
 </section>
 
 
-<!-- ═════════════ FINAL CTA ═════════════ -->
-<section class="section" aria-labelledby="final-title">
-  <div class="wrap">
-    <div class="final" data-reveal>
-      <h2 class="split" id="final-title" data-split>Your car. <span class="chrome">Your driveway.</span><br /><span class="redtxt">Our shine.</span></h2>
-      <p>Book a mobile detail anywhere in Mercer County. Upfront pricing, no surprises. First-time customers get $15 off any single service or $25 off any package on their first detail.</p>
-      <div class="ctas">
-        <a class="btn btn-primary magnetic" href="/book" data-quote>Book Now <svg class="icon"><use href="#i-arrow-right"/></svg></a>
-        <a class="btn btn-ghost magnetic" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call (609) 613-3772</a>
+<!-- ═════════════ CTA BAND ═════════════ -->
+<section class="z-band" aria-labelledby="zband-title">
+  <div class="wrap z-band-in">
+    <div>
+      <h2 id="zband-title" data-reveal>Ready for a Showroom Shine?</h2>
+      <p data-reveal>Tell us about your car and we&rsquo;ll confirm your price and a time that works for you.</p>
+    </div>
+    <div class="z-band-cta" data-reveal>
+      <a class="btn btn-primary" href="#quote" data-quote>Book Now</a>
+      <a class="z-band-ph" href="tel:+16096133772">Call (609) 613-3772</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═════════════ FAQ ═════════════ -->
+<section class="section" id="faq" aria-labelledby="faq-title" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="eyebrow z-rule" data-reveal>Common questions</p>
+      <h2 class="h2 split" id="faq-title" data-split>What to Know Before You Book</h2>
+      <p class="lead" data-reveal>Still wondering about something? Call or text <a href="tel:+16096133772" style="color:var(--red);font-weight:700">(609) 613-3772</a>.</p>
+    </div>
+    <div class="acc" id="acc">
+      <div class="acc-item">
+        <h3><button class="acc-btn" aria-expanded="false" aria-controls="faq2" id="faq2b">How long does a detail take?<span class="pm"><svg class="icon"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="acc-panel" id="faq2" role="region" aria-labelledby="faq2b"><div><p>It depends on the service, the size of your vehicle and its condition. We'll give you a time estimate along with your price, so you know what to expect before we arrive.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button class="acc-btn" aria-expanded="false" aria-controls="faq3" id="faq3b">What areas do you serve?<span class="pm"><svg class="icon"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="acc-panel" id="faq3" role="region" aria-labelledby="faq3b"><div><p>All of Mercer County, NJ — including Ewing, Trenton, Hamilton, Lawrenceville, Princeton, West Windsor, Hopewell, Pennington, Robbinsville, East Windsor and Hightstown. Don't see your town? Call us. We likely cover it.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button class="acc-btn" aria-expanded="false" aria-controls="faq4" id="faq4b">How do I book?<span class="pm"><svg class="icon"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="acc-panel" id="faq4" role="region" aria-labelledby="faq4b"><div><p>Fill out the booking form or call/text (609) 613-3772. We'll confirm your final price based on your vehicle's size and condition, then lock in a time that works for you.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button class="acc-btn" aria-expanded="false" aria-controls="faq5" id="faq5b">What payment methods do you accept?<span class="pm"><svg class="icon"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="acc-panel" id="faq5" role="region" aria-labelledby="faq5b"><div><p>We accept cash, Venmo and Zelle.</p></div></div>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- ═════════════ QUOTE FORM ═════════════ -->
+<section class="section quote" id="quote" aria-labelledby="quote-title">
+  <div class="wrap quote-grid">
+    <div class="quote-side">
+      <p class="eyebrow" data-reveal>Book now</p>
+      <h2 class="h2 split" id="quote-title" data-split>Let&rsquo;s Get Your Car Booked</h2>
+      <p class="lead" data-reveal>Three quick steps. We'll confirm your price and time before we arrive — no surprises.</p>
+      <p class="promo-note" data-reveal><svg class="icon"><use href="#i-badge-check"/></svg><span><b>First-Time Customer Promotion:</b> $15 off any single service or $25 off any package, valid on your first detail only. Just check the box on the last step and we'll take it off your price.</span></p>
+      <div class="contact-list" data-reveal>
+        <a href="tel:+16096133772"><span class="ic"><svg class="icon"><use href="#i-phone"/></svg></span><span><small>Call or text</small><strong>(609) 613-3772</strong></span></a>
+        <a href="mailto:daviladetailing@yahoo.com"><span class="ic alt"><svg class="icon"><use href="#i-mail"/></svg></span><span><small>Email</small><strong>daviladetailing@yahoo.com</strong></span></a>
+      </div>
+      <ul class="reassure" data-reveal>
+        <li><svg class="icon"><use href="#i-check"/></svg>Upfront pricing, no surprises</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>We come to your home or workplace</li>
+        <li><svg class="icon"><use href="#i-check"/></svg>Local to Ewing &amp; Mercer County</li>
+      </ul>
+    </div>
+
+    <div class="card form-card" data-reveal>
+      <form id="qform" novalidate aria-labelledby="quote-title">
+        <ol class="progress" aria-label="Form progress">
+          <li class="cur" data-p="1">Vehicle</li>
+          <li data-p="2">Timing</li>
+          <li data-p="3">Contact</li>
+        </ol>
+        <p class="sr-only" id="stepAnnounce" aria-live="polite"></p>
+
+        <!-- Spam honeypot (hidden from people) -->
+        <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
+
+        <!-- Step 1 -->
+        <fieldset class="step-panel" data-step="1">
+          <legend><h3>Your vehicle</h3></legend>
+          <p class="hint">What are we detailing, and where?</p>
+          <div class="fields">
+            <div class="field">
+              <span class="lab" id="vtLab">Vehicle type <span class="req">*</span></span>
+              <div class="choices" role="radiogroup" aria-labelledby="vtLab">
+                <label class="choice"><input type="radio" name="vehicle" value="Sedan" /><span><svg class="icon"><use href="#i-car"/></svg>Sedan</span></label>
+                <label class="choice"><input type="radio" name="vehicle" value="SUV" /><span><svg class="icon"><use href="#i-car-front"/></svg>SUV</span></label>
+                <label class="choice"><input type="radio" name="vehicle" value="Truck" /><span><svg class="icon"><use href="#i-truck"/></svg>Truck</span></label>
+                <label class="choice"><input type="radio" name="vehicle" value="Van" /><span><svg class="icon"><use href="#i-truck"/></svg>Van</span></label>
+              </div>
+              <p class="err" id="vehicle-err" role="alert"></p>
+            </div>
+            <div class="fields two" style="margin-top:0">
+              <div class="field">
+                <label for="service">Service wanted <span class="req">*</span></label>
+                <select class="input" id="service" name="service">
+                  <option value="">Choose a service…</option>
+                  <optgroup label="Packages">
+                    <option>Express Detail Package</option><option>Premium Detail Package</option>
+                  </optgroup>
+                  <optgroup label="Services">
+                    <option>Exterior Detail</option><option>Basic Interior Detail</option><option>Premium Interior Detail</option>
+                  </optgroup>
+                  <optgroup label="Add-ons on their own">
+                    <option>Stain Removal &amp; Extraction</option><option>Pet Hair Removal</option><option>Tree Sap Removal</option><option>Engine Bay Cleaning</option>
+                  </optgroup>
+                  <option>Not sure — recommend one</option>
+                </select>
+                <p class="err" id="service-err"></p>
+              </div>
+              <div class="field">
+                <label for="town">Town <span class="req">*</span></label>
+                <select class="input" id="town" name="town"><option value="">Choose your town…</option></select>
+                <p class="err" id="town-err"></p>
+              </div>
+            </div>
+            <fieldset class="field addons-field">
+              <legend>Add-ons <span class="opt">Optional · pick any</span></legend>
+              <div class="addons"><label class="addon"><input type="checkbox" name="addons" value="Stain Removal &amp; Extraction" /><span>Stain Removal &amp; Extraction<small>$40 per row</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Pet Hair Removal" /><span>Pet Hair Removal<small>$40+</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Tree Sap Removal" /><span>Tree Sap Removal<small>$40+</small></span></label><label class="addon"><input type="checkbox" name="addons" value="Engine Bay Cleaning" /><span>Engine Bay Cleaning<small>$40</small></span></label></div>
+            </fieldset>
+          </div>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset class="step-panel" data-step="2" hidden>
+          <legend><h3>Timing &amp; details</h3></legend>
+          <p class="hint">Both optional — but they help us confirm your price.</p>
+          <div class="fields">
+            <div class="field"><label for="date">Preferred date <span class="opt">Optional</span></label><input class="input" type="date" id="date" name="date" /></div>
+            <div class="field"><label for="notes">Notes <span class="opt">Optional</span></label><textarea class="input" id="notes" name="notes" maxlength="1500" placeholder="Pet hair, stains, swirl marks, parking details…"></textarea></div>
+          </div>
+        </fieldset>
+
+        <!-- Step 3 -->
+        <fieldset class="step-panel" data-step="3" hidden>
+          <legend><h3>How do we reach you?</h3></legend>
+          <p class="hint">We'll text or call to confirm your price and time.</p>
+          <div class="fields">
+            <div class="field"><label for="name">Name <span class="req">*</span></label><input class="input" id="name" name="name" autocomplete="name" maxlength="80" /><p class="err" id="name-err"></p></div>
+            <div class="fields two" style="margin-top:0">
+              <div class="field"><label for="phone">Phone <span class="req">*</span></label><input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="(609) 555-0123" /><p class="err" id="phone-err"></p></div>
+              <div class="field"><label for="email">Email <span class="opt">Optional</span></label><input class="input" id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com" /><p class="err" id="email-err"></p></div>
+            </div>
+            <label class="check" for="firstTime"><input type="checkbox" id="firstTime" name="firstTime" /><span>This is my first detail with Davila Detailing Co.<small>First-time customers get $15 off any single service or $25 off any package. Valid on your first detail only.</small></span></label>
+          </div>
+        </fieldset>
+
+        <div class="form-nav">
+          <button type="button" class="btn btn-ghost" id="backBtn" hidden><svg class="icon"><use href="#i-chevron-left"/></svg>Back</button>
+          <button type="button" class="btn btn-primary next" id="nextBtn">Continue <svg class="icon"><use href="#i-arrow-right"/></svg></button>
+          <button type="submit" class="btn btn-primary next" id="submitBtn" hidden><span id="submitLabel">Request Booking</span><svg class="icon" id="submitIcon"><use href="#i-send"/></svg></button>
+        </div>
+        <p class="privacy">We only use your details to reply to your request. <a href="/privacy">Privacy Policy</a></p>
+      </form>
+
+      <div class="result" id="okState" hidden tabindex="-1">
+        <div class="big"><svg class="icon"><use href="#i-circle-check"/></svg></div>
+        <h3>Request received!</h3>
+        <p id="okMsg">Thanks — we'll text you shortly to confirm your price and time.</p>
+        <div class="btns"><a class="btn btn-ghost" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Need it sooner? Call</a><button type="button" class="btn btn-ghost" id="againBtn">Send another</button></div>
+      </div>
+      <div class="result" id="failState" hidden tabindex="-1">
+        <div class="big"><svg class="icon"><use href="#i-triangle-alert"/></svg></div>
+        <h3>Almost there.</h3>
+        <p>Our online form couldn't send your request. Tap below to email it — your details are already filled in — or just call us.</p>
+        <div class="btns"><a class="btn btn-primary" id="mailtoBtn" href="mailto:daviladetailing@yahoo.com"><svg class="icon"><use href="#i-mail"/></svg>Email my request</a><a class="btn btn-ghost" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call (609) 613-3772</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ═════════════ FOOTER ═════════════ -->
@@ -1128,7 +1468,7 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
       <div>
         <h2>Quick links</h2>
         <ul>
-          <li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li><a href="/services#pricing">Pricing</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/about">About</a></li><li><a href="/about#faq">FAQ</a></li><li><a href="/book" data-quote>Book Now</a></li>
+          <li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li><a href="/services#pricing">Pricing</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/about">About</a></li><li><a href="/about#faq">FAQ</a></li><li><a href="#quote" data-quote>Book Now</a></li>
         </ul>
       </div>
     </div>
@@ -1138,7 +1478,7 @@ body::before { content: ""; position: fixed; inset: -12vmax; z-index: -1; pointe
 
 <div class="mbar" aria-label="Quick actions">
   <a class="btn btn-chrome" href="tel:+16096133772"><svg class="icon"><use href="#i-phone"/></svg>Call</a>
-  <a class="btn btn-primary" href="/book" data-quote>Book Now</a>
+  <a class="btn btn-primary" href="#quote" data-quote>Book Now</a>
 </div>
 
 <script>
