@@ -324,7 +324,7 @@ body::after {
 .ba-wrap { margin-top: 56px; display: grid; gap: 18px; }
 @media (min-width: 1000px) {
   .ba-wrap { grid-template-columns: 1fr 1fr; align-items: stretch; }
-  .ba-wrap .thumbs { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+  .ba-wrap .thumbs { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); }
   .ba-wrap .thumbs .thumb { aspect-ratio: auto; }
 }
 .ba { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 1 / 1; border: 1px solid var(--line); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: ew-resize; background: #111; }
@@ -1115,6 +1115,8 @@ body.has-hero .header:not(.scrolled) { background: transparent; border-color: tr
 
       <!-- Add more real photos here as <div class="thumb real">…</div> (square, 600px WebP in /gallery). -->
       <div class="thumbs">
+        <div class="thumb real" data-reveal><img src="/gallery/vw-atlas-foam-600.webp" width="600" height="600" alt="White Volkswagen Atlas covered in foam during a pre-wash in a driveway" loading="lazy" decoding="async" /><span class="cap">Foam pre-wash · VW Atlas</span></div>
+        <div class="thumb real" data-reveal><img src="/gallery/ram-foam-600.webp" width="600" height="600" alt="White Ram 1500 truck covered in foam during a pre-wash" loading="lazy" decoding="async" /><span class="cap">Foam pre-wash · Ram</span></div>
         <div class="thumb real" data-reveal><img src="/gallery/sienna-exterior-600.webp" width="600" height="600" alt="Freshly washed gray Toyota Sienna in a driveway, side view" loading="lazy" decoding="async" /><span class="cap">Exterior</span></div>
         <div class="thumb real" data-reveal><img src="/gallery/civic-interior-600.webp" width="600" height="600" alt="Clean Honda Civic front interior — seats, dash and carpets" loading="lazy" decoding="async" /><span class="cap">Interior</span></div>
         <div class="thumb real" data-reveal><img src="/gallery/mustang-foam-600.webp" width="600" height="600" alt="Ford Mustang covered in foam during a pre-wash at dusk" loading="lazy" decoding="async" /><span class="cap">Foam pre-wash</span></div>
@@ -1562,55 +1564,15 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     $$(".chrome .w > span").forEach((s) => s.classList.add("chrome"));
     $$(".chrome").forEach((c) => { if (c.querySelector(".w")) c.classList.remove("chrome"); });
 
-    // Hero intro
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-    tl.from("[data-hero-split] .w > span", { yPercent: 110, duration: 1.1, stagger: 0.06 }, 0.15)
-      .from("[data-hero]", { y: 24, autoAlpha: 0, duration: 0.9, stagger: 0.1 }, 0.35)
-      .from("#header", { y: -20, autoAlpha: 0, duration: 0.8 }, 0);
-
-    // Section headings
-    $$("[data-split]").forEach((h) => {
-      gsap.from(h.querySelectorAll(".w > span"), { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.05, scrollTrigger: { trigger: h, start: "top 88%" } });
-    });
-    // Generic reveals (batched for a natural stagger)
-    // Opacity only (not visibility) so unrevealed links stay keyboard-focusable.
-    gsap.set("[data-reveal]", { opacity: 0, y: 28 });
-    ScrollTrigger.batch("[data-reveal]", { start: "top 90%", once: true, onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.08, overwrite: true }) });
-    document.addEventListener("focusin", (e) => {
-      const r = e.target.closest("[data-reveal]");
-      if (r && +getComputedStyle(r).opacity < 1) gsap.to(r, { opacity: 1, y: 0, duration: 0.3, overwrite: true });
-      e.target.closest("[data-split]")?.querySelectorAll(".w > span").forEach((w) => gsap.set(w, { yPercent: 0 }));
-    });
+    // No fade-in / slide-in animations: content is shown right away.
 
     // Parallax
     $$("[data-parallax]").forEach((el) => gsap.to(el, { y: +el.dataset.parallax, ease: "none", scrollTrigger: { trigger: el.closest("section"), start: "top top", end: "bottom top", scrub: true } }));
 
-    // Count-up numbers
-    $$("[data-count]").forEach((el) => {
-      const end = +el.dataset.count; const o = { v: end === 0 ? 9 : 0 };
-      gsap.to(o, { v: end, duration: 1.6, ease: "power2.out", snap: { v: 1 }, scrollTrigger: { trigger: el, start: "top 90%", once: true }, onUpdate: () => (el.textContent = Math.round(o.v)) });
-    });
-
     // How it works: pin + progressive steps on desktop, simple reveal elsewhere.
     const mm = gsap.matchMedia();
     if ($("#process")) {
-    mm.add("(min-width: 900px)", () => {
-      const steps = $$("#steps .step");
-      steps.forEach((s, i) => s.classList.toggle("on", i === 0));
-      gsap.set("#trackFill", { scaleX: 0 });
-      const st = ScrollTrigger.create({
-        trigger: "#process", start: "top top", end: "+=140%", pin: true, scrub: 0.6,
-        onUpdate: (self) => {
-          gsap.set("#trackFill", { scaleX: self.progress });
-          steps.forEach((s, i) => s.classList.toggle("on", self.progress >= i / steps.length - 0.02));
-        },
-      });
-      return () => { st.kill(); steps.forEach((s) => s.classList.add("on")); gsap.set("#trackFill", { scaleX: 1 }); };
-    });
-    mm.add("(max-width: 899px)", () => {
-      $("#steps").classList.add("no-pin");
-      gsap.from("#steps .step", { y: 30, autoAlpha: 0, stagger: 0.12, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: "#steps", start: "top 85%" } });
-    });
+    $("#steps").classList.add("no-pin");  // all steps shown at once, no pinned scroll
     }
   }
 
