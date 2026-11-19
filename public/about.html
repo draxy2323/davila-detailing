@@ -1512,7 +1512,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     }
     async function viaSite(d) {
       if (!SITE_ENDPOINT || !/^https?:/.test(location.protocol)) return false;
-      const svc = { "Exterior Detail": "exterior", "Basic Interior Detail": "interior", "Premium Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
+      const svc = { "Exterior Detail": "exterior", "Standard Interior Detail": "interior", "Premium Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
       const fd = new FormData();
       fd.append("name", d.name); fd.append("phone", d.phone); fd.append("email", d.email);
       fd.append("vehicle", d.vehicle); fd.append("service", svc); fd.append("requested", d.addons ? `${d.service} + ${d.addons}` : d.service); fd.append("location", d.town);

@@ -1121,7 +1121,7 @@ h2, .h2 { line-height: 1.1; }
       <article class="card svc tilt" data-reveal>
         <span class="glare" aria-hidden="true"></span>
         <span class="ic"><svg class="icon"><use href="#i-armchair"/></svg></span>
-        <h3>Basic Interior Detail</h3>
+        <h3>Standard Interior Detail</h3>
         <p class="svc-price">Starting at <b>$110</b></p>
         <p class="svc-desc">A clean, fresh cabin. Vacuum and wipe-down of every surface.</p>
         <ul class="incl">
@@ -1130,7 +1130,7 @@ h2, .h2 { line-height: 1.1; }
           <li><svg class="icon"><use href="#i-check"/></svg>All door panels, dash &amp; console cleaned</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Cup holders cleaned</li>
         </ul>
-        <div class="foot"><a class="btn btn-ghost btn-sm" href="/book?service=Basic%20Interior%20Detail" data-quote data-service="Basic Interior Detail">Book This Service</a></div>
+        <div class="foot"><a class="btn btn-ghost btn-sm" href="/book?service=Standard%20Interior%20Detail" data-quote data-service="Standard Interior Detail">Book This Service</a></div>
       </article>
       <article class="card svc tilt" data-reveal>
         <span class="glare" aria-hidden="true"></span>
@@ -1228,7 +1228,7 @@ h2, .h2 { line-height: 1.1; }
         <thead><tr><th scope="col">Service</th><th scope="col">Sedan</th><th scope="col">SUV</th><th scope="col">Truck</th><th scope="col">Van</th></tr></thead>
         <tbody>
           <tr><th scope="row">Exterior</th><td>$100</td><td>$120</td><td>$140</td><td>$160</td></tr>
-          <tr><th scope="row">Basic Interior</th><td>$110</td><td>$130</td><td>$150</td><td>$170</td></tr>
+          <tr><th scope="row">Standard Interior</th><td>$110</td><td>$130</td><td>$150</td><td>$170</td></tr>
           <tr><th scope="row">Premium Interior<span class="tag-sm">Deep clean</span></th><td>$200</td><td>$230</td><td>$260</td><td>$280</td></tr>
           <tr><th scope="row">Express</th><td>$170</td><td>$200</td><td>$230</td><td>$260</td></tr>
           <tr><th scope="row">Premium</th><td>$250</td><td>$290</td><td>$330</td><td>$360</td></tr>
@@ -1590,7 +1590,7 @@ const TOWNS = ["Ewing", "Trenton", "Hamilton", "Lawrenceville", "Princeton", "We
     }
     async function viaSite(d) {
       if (!SITE_ENDPOINT || !/^https?:/.test(location.protocol)) return false;
-      const svc = { "Exterior Detail": "exterior", "Basic Interior Detail": "interior", "Premium Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
+      const svc = { "Exterior Detail": "exterior", "Standard Interior Detail": "interior", "Premium Interior Detail": "interior", "Not sure — recommend one": "not-sure" }[d.service] || "other";
       const fd = new FormData();
       fd.append("name", d.name); fd.append("phone", d.phone); fd.append("email", d.email);
       fd.append("vehicle", d.vehicle); fd.append("service", svc); fd.append("requested", d.addons ? `${d.service} + ${d.addons}` : d.service); fd.append("location", d.town);
